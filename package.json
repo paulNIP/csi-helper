@@ -1,20 +1,37 @@
 {
   "name": "csi-helper",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Opel CSI (Customer Satisfaction Index) - Automated Survey QA Script",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "playwright test",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "opel",
+    "usabilla",
+    "survey",
+    "qa",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.7",
+    "playwright": "^1.40.0",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.41.0",
-    "@types/node": "^25.0.10",
+    "@types/node": "^20.10.4",
+    "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^6.4.14",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  }
 }
