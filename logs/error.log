@@ -1,3 +1,5 @@
 [2026-02-05 18:38:11] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
 [2026-02-05 18:38:13] ERROR: Email connection failed {"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48317d2c856sm65582595e9.4 - gsmtp"}
 [2026-02-05 18:41:45] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
+[2026-02-05 19:28:30] ERROR: Proxy test failed {"error":"Hostname/IP does not match certificate's altnames: Host: ipv4.icanhazip.com. is not in the cert's altnames: DNS:au.proxy.iproyal.com, DNS:geo.iproyal.com, DNS:jp.proxy.iproyal.com, DNS:proxy.iproyal.com, DNS:sg.proxy.iproyal.com, DNS:us.proxy.iproyal.com"}
+[2026-02-05 23:48:28] ERROR: Proxy test failed {"error":"Request failed with status code 400"}

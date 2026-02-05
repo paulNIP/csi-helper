@@ -141,6 +141,10 @@ export class SurveyRunner {
 
   private async triggerSurvey(page: Page): Promise<boolean> {
     try {
+      // Scroll through page until Usabilla appears
+      await this.scrollUntilUsabillaShows(page);
+      await delay(1000);
+
       // Inject and trigger Usabilla survey
       const triggered = await page.evaluate(() => {
         return new Promise<boolean>((resolve) => {
@@ -162,8 +166,19 @@ export class SurveyRunner {
       });
 
       if (triggered) {
-        // Wait for survey form to appear
+        // Wait for survey form to appear and take screenshot
         await page.waitForSelector('[class*="usabilla"]', { timeout: 5000 }).catch(() => {});
+        await delay(1500);
+        
+        // Take screenshot of initial survey state
+        try {
+          const screenshotPath = `./screenshots/survey-initial-${Date.now()}.png`;
+          await page.screenshot({ path: screenshotPath, fullPage: true });
+          logger.info(`Initial survey screenshot saved: ${screenshotPath}`);
+        } catch (error) {
+          logger.warn('Failed to take initial screenshot', { error: (error as Error).message });
+        }
+        
         return true;
       }
       return false;
@@ -172,26 +187,73 @@ export class SurveyRunner {
     }
   }
 
+  private async scrollUntilUsabillaShows(page: Page, maxAttempts: number = 5): Promise<void> {
+    try {
+      let attempts = 0;
+      while (attempts < maxAttempts) {
+        // Check if Usabilla is visible
+        const isUsabillaVisible = await page.evaluate(() => {
+          const usabillaElement = document.querySelector('[class*="usabilla"]');
+          if (!usabillaElement) return false;
+          const rect = usabillaElement.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom > 0;
+        });
+
+        if (isUsabillaVisible) {
+          logger.info('Usabilla widget found and visible');
+          return;
+        }
+
+        // Scroll down smoothly
+        await page.evaluate(() => {
+          window.scrollBy({ top: 300, behavior: 'smooth' });
+        });
+
+        await delay(800);
+        attempts++;
+      }
+
+      logger.info('Completed scrolling attempts for Usabilla widget');
+    } catch (error) {
+      logger.warn('Error during scroll until Usabilla', { error: (error as Error).message });
+    }
+  }
+
   private async fillSurvey(page: Page): Promise<void> {
     const formValues = getFormValuesConfig();
+    const timestamp = Date.now();
 
     // Page 1: Overall Satisfaction (mood)
     await this.fillPage1(page, formValues);
+    await this.takePageScreenshot(page, 'page1', timestamp);
     await delay(randomInt(1000, 3000));
 
     // Page 2: Sub-Satisfaction Matrix
     await this.fillPage2(page, formValues);
+    await this.takePageScreenshot(page, 'page2', timestamp);
     await delay(randomInt(1000, 3000));
 
     // Page 3: Efficiency
     await this.fillPage3(page, formValues);
+    await this.takePageScreenshot(page, 'page3', timestamp);
     await delay(randomInt(1000, 3000));
 
     // Page 4: Goal & Vehicle Type (final)
     await this.fillPage4(page, formValues);
+    await this.takePageScreenshot(page, 'page4-submission', timestamp);
     await delay(randomInt(1000, 2000));
 
     logger.info('Survey form filled and submitted');
+  }
+
+  private async takePageScreenshot(page: Page, pageName: string, timestamp: number): Promise<void> {
+    try {
+      const screenshotPath = `./screenshots/survey-${pageName}-${timestamp}.png`;
+      await page.screenshot({ path: screenshotPath, fullPage: true });
+      logger.info(`Page screenshot saved: ${screenshotPath}`);
+    } catch (error) {
+      logger.warn(`Failed to take screenshot for ${pageName}`, { error: (error as Error).message });
+    }
   }
 
   private async fillPage1(page: Page, formValues: any): Promise<void> {
@@ -200,11 +262,14 @@ export class SurveyRunner {
       formValues.mood.weights
     );
 
+    logger.info(`Filling Page 1 - Mood rating: ${mood}`);
+
     // Click mood rating stars (1-5)
     try {
       const moodValue = parseInt(mood);
       const starSelector = `[class*="star"][data-rating="${moodValue}"]`;
       await page.click(starSelector).catch(() => {});
+      logger.info(`Selected mood rating: ${moodValue}`);
     } catch (error) {
       logger.warn('Failed to click mood rating');
     }
@@ -216,6 +281,8 @@ export class SurveyRunner {
   private async fillPage2(page: Page, formValues: any): Promise<void> {
     const fields = ['SAT_Ergonomics', 'SAT_Vehicle_Characteristics', 'SAT_Vehicle_Price'];
 
+    logger.info('Filling Page 2 - Sub-Satisfaction Matrix');
+
     for (const field of fields) {
       if (formValues[field]) {
         const value = weightedRandom(
@@ -226,6 +293,7 @@ export class SurveyRunner {
         try {
           const selector = `[data-field="${field}"][data-rating="${value}"]`;
           await page.click(selector).catch(() => {});
+          logger.info(`Selected ${field}: ${value}`);
         } catch {
           logger.warn(`Failed to select ${field}`);
         }
@@ -241,9 +309,12 @@ export class SurveyRunner {
       formValues.Net_Easy_Score.weights
     );
 
+    logger.info(`Filling Page 3 - Net Easy Score: ${netEasyScore}`);
+
     try {
       const selector = `[data-field="Net_Easy_Score"][data-rating="${netEasyScore}"]`;
       await page.click(selector).catch(() => {});
+      logger.info(`Selected Net_Easy_Score: ${netEasyScore}`);
     } catch {
       logger.warn('Failed to select Net_Easy_Score');
     }
@@ -255,9 +326,12 @@ export class SurveyRunner {
     const vehicleType = randomChoice(formValues.USER_VEHICLE.values);
     const visitGoal = randomChoice(formValues.GOAL_Visit.values);
 
+    logger.info(`Filling Page 4 - Vehicle: ${vehicleType}, Goal: ${visitGoal}`);
+
     try {
       const vehicleSelector = `[data-field="USER_VEHICLE"][value="${vehicleType}"]`;
       await page.click(vehicleSelector).catch(() => {});
+      logger.info(`Selected vehicle type: ${vehicleType}`);
     } catch {
       logger.warn('Failed to select vehicle type');
     }
@@ -265,6 +339,7 @@ export class SurveyRunner {
     try {
       const goalSelector = `[data-field="GOAL_Visit"][value="${visitGoal}"]`;
       await page.click(goalSelector).catch(() => {});
+      logger.info(`Selected visit goal: ${visitGoal}`);
     } catch {
       logger.warn('Failed to select visit goal');
     }

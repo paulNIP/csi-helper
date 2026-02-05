@@ -15,6 +15,13 @@ if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir, { recursive: true });
 }
 
+// Ensure screenshots directory exists
+const screenshotsDir = path.join(process.cwd(), 'screenshots');
+if (!fs.existsSync(screenshotsDir)) {
+  fs.mkdirSync(screenshotsDir, { recursive: true });
+  logger.info('Created screenshots directory');
+}
+
 interface AppState {
   config: ReturnType<typeof getConfig>;
   proxyManager: ProxyManager;

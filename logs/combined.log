@@ -97,3 +97,47 @@
 [2026-02-05 18:41:52] INFO: Ready! Monitoring 31 scheduled tasks
 [2026-02-05 18:41:52] INFO: Press Ctrl+C to stop
 [2026-02-05 18:42:13] INFO: Shutting down...
+[2026-02-05 19:28:29] INFO: ============================================================
+[2026-02-05 19:28:29] INFO: Opel CSI Survey QA Helper
+[2026-02-05 19:28:29] INFO: Started at 2026-02-05T16:28:29.521Z
+[2026-02-05 19:28:29] INFO: Environment: production
+[2026-02-05 19:28:29] INFO: ============================================================
+[2026-02-05 19:28:29] INFO: Initializing Opel CSI QA Helper...
+[2026-02-05 19:28:29] INFO: Testing proxy connection...
+[2026-02-05 19:28:30] ERROR: Proxy test failed {"error":"Hostname/IP does not match certificate's altnames: Host: ipv4.icanhazip.com. is not in the cert's altnames: DNS:au.proxy.iproyal.com, DNS:geo.iproyal.com, DNS:jp.proxy.iproyal.com, DNS:proxy.iproyal.com, DNS:sg.proxy.iproyal.com, DNS:us.proxy.iproyal.com"}
+[2026-02-05 19:28:30] WARN: Proxy test failed, continuing anyway
+[2026-02-05 19:28:30] INFO: Testing email connection...
+[2026-02-05 19:28:33] INFO: Email connection verified
+[2026-02-05 19:28:33] INFO: Initialization complete
+[2026-02-05 19:28:33] INFO: Scheduling tasks...
+[2026-02-05 19:28:33] INFO: Generated schedule for 3 tasks
+[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:1 at 0:01
+[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-8:58 at 8:58
+[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-12:0 at 12:00
+[2026-02-05 19:28:33] INFO: All tasks scheduled
+[2026-02-05 19:28:33] INFO: Scheduled daily report at 20:00
+[2026-02-05 19:28:33] INFO: Ready! Monitoring 4 scheduled tasks
+[2026-02-05 19:28:33] INFO: Press Ctrl+C to stop
+[2026-02-05 23:48:24] INFO: Shutting down...
+[2026-02-05 23:48:27] INFO: Created screenshots directory
+[2026-02-05 23:48:27] INFO: ============================================================
+[2026-02-05 23:48:27] INFO: Opel CSI Survey QA Helper
+[2026-02-05 23:48:27] INFO: Started at 2026-02-05T20:48:27.917Z
+[2026-02-05 23:48:27] INFO: Environment: production
+[2026-02-05 23:48:27] INFO: ============================================================
+[2026-02-05 23:48:27] INFO: Initializing Opel CSI QA Helper...
+[2026-02-05 23:48:27] INFO: Testing proxy connection...
+[2026-02-05 23:48:28] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
+[2026-02-05 23:48:28] WARN: Proxy test failed, continuing anyway
+[2026-02-05 23:48:28] INFO: Testing email connection...
+[2026-02-05 23:48:32] INFO: Email connection verified
+[2026-02-05 23:48:32] INFO: Initialization complete
+[2026-02-05 23:48:32] INFO: Scheduling tasks...
+[2026-02-05 23:48:32] INFO: Generated schedule for 3 tasks
+[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:41 at 0:41
+[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-11:11 at 11:11
+[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-15:8 at 15:08
+[2026-02-05 23:48:33] INFO: All tasks scheduled
+[2026-02-05 23:48:33] INFO: Scheduled daily report at 20:00
+[2026-02-05 23:48:33] INFO: Ready! Monitoring 4 scheduled tasks
+[2026-02-05 23:48:33] INFO: Press Ctrl+C to stop

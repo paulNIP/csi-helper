@@ -11,6 +11,8 @@ A Node.js automation script for testing Usabilla customer satisfaction surveys o
 - Comprehensive daily reporting with email delivery
 - Error tracking and monitoring
 - Real-time logging
+- **Screenshot capture at each survey step** for QA validation
+- **Scroll-until-visible functionality** ensuring Usabilla widget loads before triggering
 
 ## Technical Stack
 
@@ -49,6 +51,25 @@ npx playwright install-deps chromium
 # Install Chromium browser
 npx playwright install chromium
 ```
+
+## Output & Screenshots
+
+The application automatically creates and manages the following directories:
+
+### Logs Directory (`./logs`)
+- `combined.log` - All application logs (debug, info, warn, error)
+- `error.log` - Error-level logs only
+- Daily rotation enabled: logs older than 14 days are automatically deleted
+
+### Screenshots Directory (`./screenshots`)
+- `survey-initial-{timestamp}.png` - Initial Usabilla widget state after trigger
+- `survey-page1-{timestamp}.png` - Page 1: Overall Satisfaction (Mood Rating)
+- `survey-page2-{timestamp}.png` - Page 2: Sub-Satisfaction Matrix (Ergonomics, Characteristics, Price)
+- `survey-page3-{timestamp}.png` - Page 3: Efficiency & Net Easy Score
+- `survey-page4-submission-{timestamp}.png` - Page 4: Vehicle Type & Visit Goal (before submission)
+- `survey-failure-{timestamp}.png` - Full page screenshot on survey failure for debugging
+
+Each screenshot is timestamped and includes the full page content for easy tracking and validation.
 
 ## Configuration
 
