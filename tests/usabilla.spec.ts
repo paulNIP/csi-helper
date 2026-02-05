@@ -14,13 +14,16 @@ test('Complete Usabilla survey and capture screenshots', async ({ page }) => {
   await clearUsabillaStorage(page);
 
   // 2. Navigate with proxy
-  await page.goto('https://YOUR_SITE_URL');
+  await page.goto('https://financing.opel.store/konfigurator', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60_000,
+    });
 
   // 3. Wait for Usabilla to initialize
   await waitForUsabilla(page);
 
   // 4. Trigger survey
-  await triggerUsabillaSurvey(page, 'YOUR_TRIGGER_ID');
+  await triggerUsabillaSurvey(page, 'a5f669c28be1979ab5e2785121a6e10b');
 
   // 5. Switch to Usabilla iframe
   const frame = await getUsabillaFrame(page);
