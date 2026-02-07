@@ -285,3 +285,7 @@
 [2026-02-07 19:07:21] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}
 [2026-02-07 19:07:21] INFO: Survey result: failed {"url":"https://financing.opel.store/konfigurator","duration":140793,"error":"Survey widget did not appear within 30s timeout"}
 [2026-02-07 19:07:21] INFO: Browser closed
+[2026-02-07 19:10:00] INFO: Daily report task triggered
+[2026-02-07 19:10:04] INFO: Daily report email sent {"messageId":"<3b5df10b-0c0b-b4f1-6f42-71ba0657e386@healthcliq.com>","to":"otimpaulalex@gmail.com"}
+[2026-02-07 19:10:04] INFO: Daily report sent successfully
+[2026-02-07 19:10:04] INFO: Report generator cleared
