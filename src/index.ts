@@ -76,7 +76,7 @@ async function scheduleAllTasks(): Promise<void> {
 
   for (const entry of schedule) {
     // appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
-    appState.scheduler.scheduleUrl(entry.url, 20, 7);
+    appState.scheduler.scheduleUrl(entry.url, 22, 12);
     // Add delay to avoid overwhelming the system
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
