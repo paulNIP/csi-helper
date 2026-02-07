@@ -1,143 +1,63 @@
-[2026-02-05 18:38:10] INFO: ============================================================
-[2026-02-05 18:38:10] INFO: Opel CSI Survey QA Helper
-[2026-02-05 18:38:10] INFO: Started at 2026-02-05T15:38:10.832Z
-[2026-02-05 18:38:10] INFO: Environment: production
-[2026-02-05 18:38:10] INFO: ============================================================
-[2026-02-05 18:38:10] INFO: Initializing Opel CSI QA Helper...
-[2026-02-05 18:38:10] INFO: Testing proxy connection...
-[2026-02-05 18:38:11] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
-[2026-02-05 18:38:11] WARN: Proxy test failed, continuing anyway
-[2026-02-05 18:38:11] INFO: Testing email connection...
-[2026-02-05 18:38:13] ERROR: Email connection failed {"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48317d2c856sm65582595e9.4 - gsmtp"}
-[2026-02-05 18:38:13] WARN: Email test failed, continuing anyway
-[2026-02-05 18:38:13] INFO: Initialization complete
-[2026-02-05 18:38:13] INFO: Scheduling tasks...
-[2026-02-05 18:38:13] INFO: Generated schedule for 30 tasks
-[2026-02-05 18:38:13] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-0:18 at 0:18
-[2026-02-05 18:38:13] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-8:8 at 8:08
-[2026-02-05 18:38:13] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-12:41 at 12:41
-[2026-02-05 18:38:13] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-0:40 at 0:40
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-9:47 at 9:47
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-15:32 at 15:32
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/astra-0:46 at 0:46
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/astra-11:3 at 11:03
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/astra-15:15 at 15:15
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-0:49 at 0:49
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-8:15 at 8:15
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-13:36 at 13:36
-[2026-02-05 18:38:14] INFO: Scheduled task: https://store.opel.de/financing-0:57 at 0:57
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/financing-9:24 at 9:24
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/financing-14:28 at 14:28
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/accessories-0:48 at 0:48
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/accessories-9:58 at 9:58
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/accessories-15:33 at 15:33
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/services-0:24 at 0:24
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/services-8:12 at 8:12
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/services-15:29 at 15:29
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/about-0:37 at 0:37
-[2026-02-05 18:38:15] INFO: Scheduled task: https://store.opel.de/about-8:6 at 8:06
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/about-13:2 at 13:02
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/contact-0:24 at 0:24
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/contact-8:36 at 8:36
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/contact-13:14 at 13:14
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/support-0:8 at 0:08
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/support-10:8 at 10:08
-[2026-02-05 18:38:16] INFO: Scheduled task: https://store.opel.de/support-15:41 at 15:41
-[2026-02-05 18:38:16] INFO: All tasks scheduled
-[2026-02-05 18:38:16] INFO: Scheduled daily report at 22:00
-[2026-02-05 18:38:16] INFO: Ready! Monitoring 31 scheduled tasks
-[2026-02-05 18:38:16] INFO: Press Ctrl+C to stop
-[2026-02-05 18:41:39] INFO: Shutting down...
-[2026-02-05 18:41:44] INFO: ============================================================
-[2026-02-05 18:41:44] INFO: Opel CSI Survey QA Helper
-[2026-02-05 18:41:44] INFO: Started at 2026-02-05T15:41:44.701Z
-[2026-02-05 18:41:44] INFO: Environment: production
-[2026-02-05 18:41:44] INFO: ============================================================
-[2026-02-05 18:41:44] INFO: Initializing Opel CSI QA Helper...
-[2026-02-05 18:41:44] INFO: Testing proxy connection...
-[2026-02-05 18:41:45] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
-[2026-02-05 18:41:45] WARN: Proxy test failed, continuing anyway
-[2026-02-05 18:41:45] INFO: Testing email connection...
-[2026-02-05 18:41:49] INFO: Email connection verified
-[2026-02-05 18:41:49] INFO: Initialization complete
-[2026-02-05 18:41:49] INFO: Scheduling tasks...
-[2026-02-05 18:41:49] INFO: Generated schedule for 30 tasks
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-0:52 at 0:52
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-10:22 at 10:22
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-15:57 at 15:57
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-0:15 at 0:15
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-9:54 at 9:54
-[2026-02-05 18:41:49] INFO: Scheduled task: https://store.opel.de/vehicles/corsa-12:33 at 12:33
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/astra-0:42 at 0:42
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/astra-8:2 at 8:02
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/astra-14:30 at 14:30
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-0:19 at 0:19
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-9:35 at 9:35
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/vehicles/grandland-12:21 at 12:21
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/financing-0:25 at 0:25
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/financing-9:47 at 9:47
-[2026-02-05 18:41:50] INFO: Scheduled task: https://store.opel.de/financing-15:48 at 15:48
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/accessories-0:40 at 0:40
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/accessories-11:50 at 11:50
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/accessories-13:21 at 13:21
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/services-0:41 at 0:41
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/services-8:4 at 8:04
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/services-14:25 at 14:25
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/about-0:37 at 0:37
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/about-9:6 at 9:06
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/about-13:9 at 13:09
-[2026-02-05 18:41:51] INFO: Scheduled task: https://store.opel.de/contact-0:16 at 0:16
-[2026-02-05 18:41:52] INFO: Scheduled task: https://store.opel.de/contact-9:19 at 9:19
-[2026-02-05 18:41:52] INFO: Scheduled task: https://store.opel.de/contact-12:15 at 12:15
-[2026-02-05 18:41:52] INFO: Scheduled task: https://store.opel.de/support-0:26 at 0:26
-[2026-02-05 18:41:52] INFO: Scheduled task: https://store.opel.de/support-8:26 at 8:26
-[2026-02-05 18:41:52] INFO: Scheduled task: https://store.opel.de/support-13:7 at 13:07
-[2026-02-05 18:41:52] INFO: All tasks scheduled
-[2026-02-05 18:41:52] INFO: Scheduled daily report at 22:00
-[2026-02-05 18:41:52] INFO: Ready! Monitoring 31 scheduled tasks
-[2026-02-05 18:41:52] INFO: Press Ctrl+C to stop
-[2026-02-05 18:42:13] INFO: Shutting down...
-[2026-02-05 19:28:29] INFO: ============================================================
-[2026-02-05 19:28:29] INFO: Opel CSI Survey QA Helper
-[2026-02-05 19:28:29] INFO: Started at 2026-02-05T16:28:29.521Z
-[2026-02-05 19:28:29] INFO: Environment: production
-[2026-02-05 19:28:29] INFO: ============================================================
-[2026-02-05 19:28:29] INFO: Initializing Opel CSI QA Helper...
-[2026-02-05 19:28:29] INFO: Testing proxy connection...
-[2026-02-05 19:28:30] ERROR: Proxy test failed {"error":"Hostname/IP does not match certificate's altnames: Host: ipv4.icanhazip.com. is not in the cert's altnames: DNS:au.proxy.iproyal.com, DNS:geo.iproyal.com, DNS:jp.proxy.iproyal.com, DNS:proxy.iproyal.com, DNS:sg.proxy.iproyal.com, DNS:us.proxy.iproyal.com"}
-[2026-02-05 19:28:30] WARN: Proxy test failed, continuing anyway
-[2026-02-05 19:28:30] INFO: Testing email connection...
-[2026-02-05 19:28:33] INFO: Email connection verified
-[2026-02-05 19:28:33] INFO: Initialization complete
-[2026-02-05 19:28:33] INFO: Scheduling tasks...
-[2026-02-05 19:28:33] INFO: Generated schedule for 3 tasks
-[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:1 at 0:01
-[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-8:58 at 8:58
-[2026-02-05 19:28:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-12:0 at 12:00
-[2026-02-05 19:28:33] INFO: All tasks scheduled
-[2026-02-05 19:28:33] INFO: Scheduled daily report at 20:00
-[2026-02-05 19:28:33] INFO: Ready! Monitoring 4 scheduled tasks
-[2026-02-05 19:28:33] INFO: Press Ctrl+C to stop
-[2026-02-05 23:48:24] INFO: Shutting down...
-[2026-02-05 23:48:27] INFO: Created screenshots directory
-[2026-02-05 23:48:27] INFO: ============================================================
-[2026-02-05 23:48:27] INFO: Opel CSI Survey QA Helper
-[2026-02-05 23:48:27] INFO: Started at 2026-02-05T20:48:27.917Z
-[2026-02-05 23:48:27] INFO: Environment: production
-[2026-02-05 23:48:27] INFO: ============================================================
-[2026-02-05 23:48:27] INFO: Initializing Opel CSI QA Helper...
-[2026-02-05 23:48:27] INFO: Testing proxy connection...
-[2026-02-05 23:48:28] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
-[2026-02-05 23:48:28] WARN: Proxy test failed, continuing anyway
-[2026-02-05 23:48:28] INFO: Testing email connection...
-[2026-02-05 23:48:32] INFO: Email connection verified
-[2026-02-05 23:48:32] INFO: Initialization complete
-[2026-02-05 23:48:32] INFO: Scheduling tasks...
-[2026-02-05 23:48:32] INFO: Generated schedule for 3 tasks
-[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:41 at 0:41
-[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-11:11 at 11:11
-[2026-02-05 23:48:32] INFO: Scheduled task: https://financing.opel.store/konfigurator-15:8 at 15:08
-[2026-02-05 23:48:33] INFO: All tasks scheduled
-[2026-02-05 23:48:33] INFO: Scheduled daily report at 20:00
-[2026-02-05 23:48:33] INFO: Ready! Monitoring 4 scheduled tasks
-[2026-02-05 23:48:33] INFO: Press Ctrl+C to stop
+[2026-02-07 15:58:35] INFO: ============================================================
+[2026-02-07 15:58:35] INFO: Opel CSI Survey QA Helper
+[2026-02-07 15:58:35] INFO: Started at 2026-02-07T12:58:35.026Z
+[2026-02-07 15:58:35] INFO: Environment: production
+[2026-02-07 15:58:35] INFO: ============================================================
+[2026-02-07 15:58:35] INFO: Initializing Opel CSI QA Helper...
+[2026-02-07 15:58:35] INFO: Testing proxy connection...
+[2026-02-07 15:58:35] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
+[2026-02-07 15:58:35] WARN: Proxy test failed, continuing anyway
+[2026-02-07 15:58:35] INFO: Testing email connection...
+[2026-02-07 15:58:39] INFO: Email connection verified
+[2026-02-07 15:58:39] INFO: Initialization complete
+[2026-02-07 15:58:39] INFO: Scheduling tasks...
+[2026-02-07 15:58:39] INFO: Generated schedule for 3 tasks
+[2026-02-07 15:58:39] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:20 at 0:20
+[2026-02-07 15:58:39] INFO: Scheduled task: https://financing.opel.store/konfigurator-9:29 at 9:29
+[2026-02-07 15:58:39] INFO: Scheduled task: https://financing.opel.store/konfigurator-13:49 at 13:49
+[2026-02-07 15:58:39] INFO: All tasks scheduled
+[2026-02-07 15:58:39] INFO: Scheduled daily report at 20:00
+[2026-02-07 15:58:39] INFO: Ready! Monitoring 4 scheduled tasks
+[2026-02-07 15:58:39] INFO: Press Ctrl+C to stop
+[2026-02-07 16:51:34] INFO: Shutting down...
+[2026-02-07 16:54:10] INFO: ============================================================
+[2026-02-07 16:54:10] INFO: Opel CSI Survey QA Helper
+[2026-02-07 16:54:10] INFO: Started at 2026-02-07T13:54:10.710Z
+[2026-02-07 16:54:10] INFO: Environment: production
+[2026-02-07 16:54:10] INFO: ============================================================
+[2026-02-07 16:54:10] INFO: Initializing Opel CSI QA Helper...
+[2026-02-07 16:54:10] INFO: Testing proxy connection...
+[2026-02-07 16:54:11] ERROR: Proxy test failed {"error":"Hostname/IP does not match certificate's altnames: Host: ipv4.icanhazip.com. is not in the cert's altnames: DNS:au.proxy.iproyal.com, DNS:eu.proxy.iproyal.com, DNS:geo.iproyal.com, DNS:proxy.iproyal.com, DNS:sg.proxy.iproyal.com, DNS:us.proxy.iproyal.com"}
+[2026-02-07 16:54:11] WARN: Proxy test failed, continuing anyway
+[2026-02-07 16:54:11] INFO: Testing email connection...
+[2026-02-07 16:54:14] INFO: Email connection verified
+[2026-02-07 16:54:14] INFO: Initialization complete
+[2026-02-07 16:54:14] INFO: Scheduling tasks...
+[2026-02-07 16:54:14] INFO: Generated schedule for 3 tasks
+[2026-02-07 16:54:14] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:55 at 0:55
+[2026-02-07 16:54:14] INFO: Scheduled task: https://financing.opel.store/konfigurator-8:25 at 8:25
+[2026-02-07 16:54:14] INFO: Scheduled task: https://financing.opel.store/konfigurator-12:13 at 12:13
+[2026-02-07 16:54:14] INFO: All tasks scheduled
+[2026-02-07 16:54:14] INFO: Scheduled daily report at 20:00
+[2026-02-07 16:54:14] INFO: Ready! Monitoring 4 scheduled tasks
+[2026-02-07 16:54:14] INFO: Press Ctrl+C to stop
+[2026-02-07 17:00:48] INFO: Shutting down...
+[2026-02-07 17:08:29] INFO: ============================================================
+[2026-02-07 17:08:29] INFO: Opel CSI Survey QA Helper
+[2026-02-07 17:08:29] INFO: Started at 2026-02-07T14:08:29.106Z
+[2026-02-07 17:08:29] INFO: Environment: production
+[2026-02-07 17:08:29] INFO: ============================================================
+[2026-02-07 17:08:29] INFO: Initializing Opel CSI QA Helper...
+[2026-02-07 17:08:29] INFO: Testing proxy connection...
+[2026-02-07 17:08:30] INFO: Testing email connection...
+[2026-02-07 17:08:33] INFO: Email connection verified
+[2026-02-07 17:08:33] INFO: Initialization complete
+[2026-02-07 17:08:33] INFO: Scheduling tasks...
+[2026-02-07 17:08:33] INFO: Generated schedule for 3 tasks
+[2026-02-07 17:08:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-0:36 at 0:36
+[2026-02-07 17:08:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-8:50 at 8:50
+[2026-02-07 17:08:33] INFO: Scheduled task: https://financing.opel.store/konfigurator-12:56 at 12:56
+[2026-02-07 17:08:33] INFO: All tasks scheduled
+[2026-02-07 17:08:33] INFO: Scheduled daily report at 20:00
+[2026-02-07 17:08:33] INFO: Ready! Monitoring 4 scheduled tasks
+[2026-02-07 17:08:33] INFO: Press Ctrl+C to stop

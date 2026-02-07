@@ -1,5 +1,7 @@
 import { ProxyConfig } from './config';
 import logger from './logger';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+
 
 export interface ProxyServer {
   server: string;
@@ -74,21 +76,40 @@ export class ProxyManager {
       const axios = require('axios');
       const proxyServer = this.getProxyServer();
 
-      const response = await axios.get('https://ipv4.icanhazip.com/', {
-        proxy: {
-          protocol: 'http',
-          host: this.config.host,
-          port: this.config.port,
-          auth: {
-            username: this.config.username,
-            password: this.config.password,
-          },
-        },
-        timeout: 10000,
-      });
+    //   const response = await axios.get('https://ipv4.icanhazip.com/', {
+    //     proxy: {
+    //     //   protocol: 'http',
+    //       host: this.config.host,
+    //       port: this.config.port,
+    //       auth: {
+    //         username: this.config.username,
+    //         password: this.config.password,
+    //       },
+    //     },
+    //     timeout: 10000,
+    //   });
 
-      const ip = response.data.trim();
-      logger.info(`Proxy test successful. IP: ${ip}`);
+        const username = this.config.username;
+        const password = this.config.password;
+        const host =  this.config.host;
+        const port = this.config.port;
+
+
+        // const { host, port, username, password } = this.config;
+        const proxyUrl = `http://${username}:${password}@${host}:${port}`;
+        const agent = new HttpsProxyAgent(proxyUrl);
+
+        const res = await axios.get('http://ipv4.icanhazip.com', {
+        httpAgent: agent,
+        timeout: 10000,
+        });
+
+        console.log('Proxy test successful. IP:', res.data.trim());
+
+
+        
+
+
       return true;
     } catch (error) {
       logger.error('Proxy test failed', { error: (error as Error).message });

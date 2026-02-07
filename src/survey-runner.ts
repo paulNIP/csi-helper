@@ -130,12 +130,18 @@ export class SurveyRunner {
 
     // Clear storage
     await page.evaluate(() => {
-      const keys = Object.keys(localStorage);
-      for (const key of keys) {
-        if (key.includes('usabilla') || key.includes('ub_')) {
-          localStorage.removeItem(key);
+        try{
+            const keys = Object.keys(localStorage);
+            for (const key of keys) {
+                if (key.includes('usabilla') || key.includes('ub_')) {
+                localStorage.removeItem(key);
+                }
+            }
+
+        } catch {
+                return null;
         }
-      }
+
     });
   }
 
