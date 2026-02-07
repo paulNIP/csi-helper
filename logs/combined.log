@@ -252,3 +252,36 @@
 [2026-02-07 18:51:54] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}
 [2026-02-07 18:51:54] INFO: Survey result: failed {"url":"https://financing.opel.store/konfigurator","duration":53586,"error":"Survey widget did not appear within 30s timeout"}
 [2026-02-07 18:51:54] INFO: Browser closed
+[2026-02-07 18:55:00] INFO: Daily report task triggered
+[2026-02-07 18:55:04] INFO: Daily report email sent {"messageId":"<fa0ec092-6b93-0ec6-ecc1-064a55a36750@healthcliq.com>","to":"otimpaulalex@gmail.com"}
+[2026-02-07 18:55:04] INFO: Daily report sent successfully
+[2026-02-07 18:55:04] INFO: Report generator cleared
+[2026-02-07 19:03:09] INFO: Shutting down...
+[2026-02-07 19:03:14] INFO: ============================================================
+[2026-02-07 19:03:14] INFO: Opel CSI Survey QA Helper
+[2026-02-07 19:03:14] INFO: Started at 2026-02-07T16:03:14.808Z
+[2026-02-07 19:03:14] INFO: Environment: production
+[2026-02-07 19:03:14] INFO: ============================================================
+[2026-02-07 19:03:14] INFO: Initializing Opel CSI QA Helper...
+[2026-02-07 19:03:14] INFO: Testing proxy connection...
+[2026-02-07 19:03:15] INFO: Testing email connection...
+[2026-02-07 19:03:19] INFO: Email connection verified
+[2026-02-07 19:03:19] INFO: Initialization complete
+[2026-02-07 19:03:19] INFO: Scheduling tasks...
+[2026-02-07 19:03:19] INFO: Generated schedule for 3 tasks
+[2026-02-07 19:03:19] INFO: Scheduled task: https://financing.opel.store/konfigurator-19:5 at 19:05
+[2026-02-07 19:03:19] INFO: Scheduled task: https://financing.opel.store/konfigurator-19:5 at 19:05
+[2026-02-07 19:03:19] INFO: Scheduled task: https://financing.opel.store/konfigurator-19:5 at 19:05
+[2026-02-07 19:03:19] INFO: All tasks scheduled
+[2026-02-07 19:03:19] INFO: Scheduled daily report at 19:10
+[2026-02-07 19:03:19] INFO: Ready! Monitoring 2 scheduled tasks
+[2026-02-07 19:03:19] INFO: Press Ctrl+C to stop
+[2026-02-07 19:05:00] INFO: Task triggered: https://financing.opel.store/konfigurator-19:5
+[2026-02-07 19:05:01] INFO: Browser initialized
+[2026-02-07 19:05:01] INFO: Executing survey for https://financing.opel.store/konfigurator
+[2026-02-07 19:05:01] INFO: Navigating to https://financing.opel.store/konfigurator
+[2026-02-07 19:05:31] INFO: Triggering survey for https://financing.opel.store/konfigurator
+[2026-02-07 19:06:21] INFO: Completed scrolling attempts for Usabilla widget
+[2026-02-07 19:07:21] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}
+[2026-02-07 19:07:21] INFO: Survey result: failed {"url":"https://financing.opel.store/konfigurator","duration":140793,"error":"Survey widget did not appear within 30s timeout"}
+[2026-02-07 19:07:21] INFO: Browser closed

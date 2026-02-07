@@ -69,7 +69,7 @@ export class SurveyRunner {
 
       // Wait for Usabilla widget to load
       await page.waitForLoadState('networkidle');
-      await delay(2000);
+      await delay(20_000);
 
       // Trigger the survey
       logger.info(`Triggering survey for ${url}`);
@@ -149,7 +149,7 @@ export class SurveyRunner {
     try {
       // Scroll through page until Usabilla appears
       await this.scrollUntilUsabillaShows(page);
-      await delay(1000);
+      await delay(30_000);
 
       // Inject and trigger Usabilla survey
       const triggered = await page.evaluate(() => {
@@ -215,7 +215,7 @@ export class SurveyRunner {
           window.scrollBy({ top: 300, behavior: 'smooth' });
         });
 
-        await delay(800);
+        await delay(10_000);
         attempts++;
       }
 
