@@ -1,2 +1,5 @@
 [2026-02-07 15:58:35] ERROR: Proxy test failed {"error":"Request failed with status code 400"}
 [2026-02-07 16:54:11] ERROR: Proxy test failed {"error":"Hostname/IP does not match certificate's altnames: Host: ipv4.icanhazip.com. is not in the cert's altnames: DNS:au.proxy.iproyal.com, DNS:eu.proxy.iproyal.com, DNS:geo.iproyal.com, DNS:proxy.iproyal.com, DNS:sg.proxy.iproyal.com, DNS:us.proxy.iproyal.com"}
+[2026-02-07 18:35:58] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}
+[2026-02-07 18:45:57] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}
+[2026-02-07 18:51:54] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget did not appear within 30s timeout"}

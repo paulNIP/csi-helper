@@ -173,8 +173,8 @@ export class SurveyRunner {
 
       if (triggered) {
         // Wait for survey form to appear and take screenshot
-        await page.waitForSelector('[class*="usabilla"]', { timeout: 5000 }).catch(() => {});
-        await delay(1500);
+        await page.waitForSelector('[class*="usabilla"]', { timeout: 60_000 }).catch(() => {});
+        await delay(10_000);
         
         // Take screenshot of initial survey state
         try {
