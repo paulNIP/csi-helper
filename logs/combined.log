@@ -2928,3 +2928,65 @@
 [2026-02-09 13:35:06] INFO: Daily report email sent {"messageId":"<57b76ba4-df1c-c668-6dd3-78069c798fef@healthcliq.com>","to":"otimpaulalex@gmail.com"}
 [2026-02-09 13:35:06] INFO: Daily report sent successfully
 [2026-02-09 13:35:06] INFO: Report generator cleared
+[2026-02-09 14:07:01] INFO: Shutting down...
+[2026-02-09 14:08:15] INFO: ============================================================
+[2026-02-09 14:08:15] INFO: Opel CSI Survey QA Helper
+[2026-02-09 14:08:15] INFO: Started at 2026-02-09T11:08:15.054Z
+[2026-02-09 14:08:15] INFO: Environment: production
+[2026-02-09 14:08:15] INFO: ============================================================
+[2026-02-09 14:08:15] INFO: Initializing Opel CSI QA Helper...
+[2026-02-09 14:08:15] INFO: Testing proxy connection...
+[2026-02-09 14:08:17] INFO: Testing email connection...
+[2026-02-09 14:08:20] INFO: Email connection verified
+[2026-02-09 14:08:20] INFO: Initialization complete
+[2026-02-09 14:08:20] INFO: Scheduling tasks...
+[2026-02-09 14:08:20] INFO: Using cron-based daily scheduling
+[2026-02-09 14:08:20] INFO: Generated schedule for 3 tasks
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-0:35 at 0:35
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-11:53 at 11:53
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-13:15 at 13:15
+[2026-02-09 14:08:20] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-09 14:08:20] INFO: All tasks scheduled
+[2026-02-09 14:08:20] INFO: Scheduled daily report at 14:25
+[2026-02-09 14:08:20] INFO: Ready! Monitoring tasks:
+[2026-02-09 14:08:20] INFO:   - Cron tasks: 5
+[2026-02-09 14:08:20] INFO:   - Interval tasks: 0
+[2026-02-09 14:08:20] INFO:   - Total tasks: 5
+[2026-02-09 14:08:20] INFO: Press Ctrl+C to stop
+[2026-02-09 14:10:00] INFO: Task triggered: https://store.opel.de/vehicles?channel=rockse-14:10
+[2026-02-09 14:10:00] INFO: Browser initialized with proxy support
+[2026-02-09 14:10:00] INFO: Executing survey for https://store.opel.de/vehicles?channel=rockse
+[2026-02-09 14:10:01] INFO: Navigating to https://store.opel.de/vehicles?channel=rockse
+[2026-02-09 14:10:41] INFO: ℹ️ Strict cookie accept link not found
+[2026-02-09 14:10:41] INFO: ⚠️ No cookie consent modal found — Usabilla may be blocked
+[2026-02-09 14:10:41] INFO: 🔍 Scrolling page for up to 420 seconds while checking for Usabilla
+[2026-02-09 14:10:41] INFO: 🔎 Usabilla check: {"usabilla_live":true,"ua_object":false,"usabilla_scripts":[]}
+[2026-02-09 14:10:41] INFO: 🎯 Usabilla detected on page!
+[2026-02-09 14:10:48] INFO: Initial survey screenshot saved: ./screenshots/survey-initial-1770635448868.png
+[2026-02-09 14:10:48] INFO: Filling Page 1 - Mood rating: 4
+[2026-02-09 14:11:18] INFO: Selected mood rating: 4
+[2026-02-09 14:11:49] INFO: Page screenshot saved: ./screenshots/survey-page1-1770635448953.png
+[2026-02-09 14:11:51] INFO: Filling Page 2 - Sub-Satisfaction Matrix
+[2026-02-09 14:12:21] INFO: Selected SAT_Ergonomics: 4
+[2026-02-09 14:12:51] INFO: Selected SAT_Vehicle_Characteristics: 4
+[2026-02-09 14:13:21] INFO: Selected SAT_Vehicle_Price: 4
+[2026-02-09 14:13:51] INFO: Page screenshot saved: ./screenshots/survey-page2-1770635448953.png
+[2026-02-09 14:13:53] INFO: Filling Page 3 - Net Easy Score: 5
+[2026-02-09 14:14:23] INFO: Selected Net_Easy_Score: 5
+[2026-02-09 14:14:53] INFO: Page screenshot saved: ./screenshots/survey-page3-1770635448953.png
+[2026-02-09 14:14:55] INFO: Filling Page 4 - Vehicle: B2B_COMMERCIAL, Goal: GOAL_Buy
+[2026-02-09 14:15:25] INFO: Selected vehicle type: B2B_COMMERCIAL
+[2026-02-09 14:15:55] INFO: Selected visit goal: GOAL_Buy
+[2026-02-09 14:16:25] INFO: Page screenshot saved: ./screenshots/survey-page4-submission-1770635448953.png
+[2026-02-09 14:16:27] INFO: Survey form filled and submitted
+[2026-02-09 14:16:27] INFO: Survey completed successfully for https://store.opel.de/vehicles?channel=rockse
+[2026-02-09 14:16:27] INFO: 📊 Survey result recorded: https://store.opel.de/vehicles?channel=rockse - success {"duration":"386149ms"}
+[2026-02-09 14:16:27] INFO: Survey result: success {"url":"https://store.opel.de/vehicles?channel=rockse","duration":386149}
+[2026-02-09 14:16:27] INFO: Browser closed
+[2026-02-09 14:25:00] INFO: Daily report task triggered
+[2026-02-09 14:25:05] INFO: Daily report email sent {"messageId":"<853ad5e6-1ad4-bca0-5a7d-671704efdfc3@healthcliq.com>","to":"otimpaulalex@gmail.com"}
+[2026-02-09 14:25:05] INFO: Daily report sent successfully
+[2026-02-09 14:25:05] INFO: Report entries cleared
+[2026-02-09 14:27:45] INFO: Shutting down...

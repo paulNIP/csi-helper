@@ -37,8 +37,8 @@ async function initializeApp(): Promise<void> {
 
   const config = getConfig();
   const proxyManager = new ProxyManager(config.proxy);
-  const scheduler = new Scheduler(proxyManager);
   const reportGenerator = new ReportGenerator();
+  const scheduler = new Scheduler(proxyManager, reportGenerator);
   const emailSender = new EmailSender(config.smtp);
 
   appState = {
@@ -86,8 +86,8 @@ async function scheduleAllTasks(): Promise<void> {
     logger.info(`Generated schedule for ${schedule.length} tasks`);
 
     for (const entry of schedule) {
-    //   appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
-      appState.scheduler.scheduleUrl(entry.url, 13, 26);
+      appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
+      appState.scheduler.scheduleUrl(entry.url, 14, 10);
       // Add delay to avoid overwhelming the system
       await new Promise((resolve) => setTimeout(resolve, 100));
     }

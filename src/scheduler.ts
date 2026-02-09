@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import logger from './logger';
 import { SurveyRunner } from './survey-runner';
 import { ProxyManager } from './proxy-manager';
+import { ReportGenerator, SurveyEntry } from './report-generator';
 import { delay } from './utils';
 
 export interface ScheduledTask {
@@ -18,9 +19,11 @@ export class Scheduler {
   private tasks: Map<string, cron.ScheduledTask> = new Map();
   private intervalTasks: Map<string, NodeJS.Timeout> = new Map();
   private proxyManager: ProxyManager;
+  private reportGenerator: ReportGenerator;
 
-  constructor(proxyManager: ProxyManager) {
+  constructor(proxyManager: ProxyManager, reportGenerator: ReportGenerator) {
     this.proxyManager = proxyManager;
+    this.reportGenerator = reportGenerator;
   }
 
   /**
@@ -143,8 +146,19 @@ export class Scheduler {
       const runner = new SurveyRunner(this.proxyManager);
       await runner.initialize();
 
-      logger.info(`Executing survey for ${url} (Browser with Proxy + Link Discovery)`);
+      logger.info(`Executing survey for ${url}`);
       const result = await runner.runSurvey(url);
+
+      // Record result in report generator
+      const surveyEntry: SurveyEntry = {
+        url: result.url,
+        status: result.status,
+        timestamp: result.timestamp,
+        duration: result.duration,
+        error: result.error,
+      };
+
+      this.reportGenerator.addSurveyResult(surveyEntry);
 
       logger.info(`Survey result: ${result.status}`, {
         url,
@@ -157,6 +171,17 @@ export class Scheduler {
       logger.error(`Task execution failed for ${url}`, {
         error: (error as Error).message,
       });
+
+      // Record failure in report generator
+      const failureEntry: SurveyEntry = {
+        url,
+        status: 'failed',
+        timestamp: new Date().toISOString(),
+        duration: 0,
+        error: (error as Error).message,
+      };
+
+      this.reportGenerator.addSurveyResult(failureEntry);
     }
   }
 

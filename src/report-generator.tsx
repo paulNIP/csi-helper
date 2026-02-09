@@ -1,5 +1,19 @@
-import { SurveyResult } from './survey-runner';
 import logger from './logger';
+
+export interface SurveyEntry {
+  url: string;
+  status: 'success' | 'failed';
+  timestamp: string;
+  duration: number; // milliseconds
+  error?: string;
+  responseDetails?: {
+    mood?: number | string;
+    satisfaction?: Record<string, number | string>;
+    efficiency?: number | string;
+    vehicleType?: string;
+    visitGoal?: string;
+  };
+}
 
 export interface DailyReport {
   date: string;
@@ -7,296 +21,209 @@ export interface DailyReport {
   successful: number;
   failed: number;
   successRate: number;
-  details: SurveyResult[];
   failureDetails: string;
+  entries: SurveyEntry[];
   averageDuration: number;
+  startTime: string;
+  endTime: string;
 }
 
 export class ReportGenerator {
-  private results: SurveyResult[] = [];
+  private entries: SurveyEntry[] = [];
+  private startTime: Date = new Date();
 
-  addResult(result: SurveyResult): void {
-    this.results.push(result);
+  /**
+   * Add a survey result to the report
+   */
+  addSurveyResult(entry: SurveyEntry): void {
+    this.entries.push(entry);
+    logger.info(`📊 Survey result recorded: ${entry.url} - ${entry.status}`, {
+      duration: `${entry.duration}ms`,
+      error: entry.error,
+    });
   }
 
-  addResults(results: SurveyResult[]): void {
-    this.results.push(...results);
-  }
-
+  /**
+   * Generate daily report with aggregated statistics
+   */
   generateDailyReport(): DailyReport {
-    const date = new Date().toISOString().split('T')[0];
-    const totalAttempted = this.results.length;
-    const successful = this.results.filter((r) => r.status === 'success').length;
-    const failed = totalAttempted - successful;
+    const successful = this.entries.filter((e) => e.status === 'success').length;
+    const failed = this.entries.filter((e) => e.status === 'failed').length;
+    const totalAttempted = this.entries.length;
     const successRate = totalAttempted > 0 ? (successful / totalAttempted) * 100 : 0;
-    const totalDuration = this.results.reduce((sum, r) => sum + r.duration, 0);
-    const averageDuration = totalAttempted > 0 ? Math.round(totalDuration / totalAttempted) : 0;
 
-    const failureDetails = this.results
-      .filter((r) => r.status === 'failed')
+    const failureDetails = this.entries
+      .filter((e) => e.status === 'failed')
       .map(
-        (r) =>
-          `${r.timestamp} ${r.url}: ${r.error || 'Unknown error'}`
+        (e) =>
+          `- ${e.url}: ${e.error || 'Unknown error'} (${new Date(e.timestamp).toLocaleTimeString()})`
       )
       .join('\n');
 
-    return {
-      date,
+    const totalDuration = this.entries.reduce((sum, e) => sum + e.duration, 0);
+    const averageDuration = totalAttempted > 0 ? totalDuration / totalAttempted : 0;
+
+    const report: DailyReport = {
+      date: new Date().toISOString().split('T')[0],
       totalAttempted,
       successful,
       failed,
-      successRate: Math.round(successRate * 100) / 100,
-      details: this.results,
-      failureDetails,
-      averageDuration,
+      successRate,
+      failureDetails: failureDetails || 'None',
+      entries: this.entries,
+      averageDuration: Math.round(averageDuration),
+      startTime: this.startTime.toISOString(),
+      endTime: new Date().toISOString(),
     };
+
+    return report;
   }
 
+  /**
+   * Generate detailed HTML report with all survey entries
+   */
   generateHtmlReport(report: DailyReport): string {
-    const successRowStyle = 'background-color: #f0f9ff;';
-    const failureRowStyle = 'background-color: #fef2f2;';
+    const successBg = '#10b981';
+    const failedBg = '#ef4444';
 
-    const tableRows = report.details
-      .map((result) => {
-        const rowStyle = result.status === 'success' ? successRowStyle : failureRowStyle;
-        const statusBadge =
-          result.status === 'success'
-            ? '<span style="background-color: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">OK</span>'
-            : '<span style="background-color: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">FAIL</span>';
-
-        const duration = `${(result.duration / 1000).toFixed(1)}s`;
-        const time = new Date(result.timestamp).toLocaleTimeString();
-
-        return `
-          <tr style="${rowStyle}">
-            <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${result.url}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${statusBadge}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${time}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${duration}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; color: #666;">${result.error || '-'}</td>
-          </tr>
-        `;
-      })
+    const entryRows = report.entries
+      .map(
+        (entry) => `
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+      <td style="padding: 12px; color: #1f2937;">${entry.url}</td>
+      <td style="padding: 12px; text-align: center;">
+        <span style="display: inline-block; padding: 4px 8px; border-radius: 4px; color: white; font-weight: bold; background-color: ${
+          entry.status === 'success' ? successBg : failedBg
+        };">
+          ${entry.status.toUpperCase()}
+        </span>
+      </td>
+      <td style="padding: 12px; text-align: center; color: #6b7280;">${new Date(entry.timestamp).toLocaleTimeString()}</td>
+      <td style="padding: 12px; text-align: center; color: #6b7280;">${(entry.duration / 1000).toFixed(2)}s</td>
+      <td style="padding: 12px; color: #6b7280;">${entry.error || '-'}</td>
+    </tr>
+      `
+      )
       .join('');
 
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="UTF-8">
-          <title>Opel CSI QA Report</title>
-          <style>
-            body {
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-              color: #1f2937;
-              background-color: #f9fafb;
-              margin: 0;
-              padding: 20px;
-            }
-            .container {
-              max-width: 900px;
-              margin: 0 auto;
-              background-color: white;
-              border-radius: 8px;
-              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-              overflow: hidden;
-            }
-            .header {
-              background-color: #0066cc;
-              color: white;
-              padding: 20px;
-            }
-            .header h1 {
-              margin: 0;
-              font-size: 24px;
-              font-weight: 600;
-            }
-            .header p {
-              margin: 5px 0 0 0;
-              opacity: 0.9;
-              font-size: 14px;
-            }
-            .stats {
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: 0;
-              padding: 0;
-            }
-            .stat {
-              padding: 20px;
-              border-right: 1px solid #e5e7eb;
-              text-align: center;
-            }
-            .stat:last-child {
-              border-right: none;
-            }
-            .stat-value {
-              font-size: 28px;
-              font-weight: bold;
-              color: #0066cc;
-            }
-            .stat-label {
-              font-size: 12px;
-              color: #6b7280;
-              margin-top: 5px;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
-            }
-            .content {
-              padding: 20px;
-            }
-            .section {
-              margin-bottom: 20px;
-            }
-            .section-title {
-              font-size: 14px;
-              font-weight: 600;
-              color: #111827;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
-              margin-bottom: 10px;
-              padding-bottom: 10px;
-              border-bottom: 2px solid #e5e7eb;
-            }
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              font-size: 13px;
-            }
-            table th {
-              background-color: #f3f4f6;
-              padding: 12px;
-              text-align: left;
-              font-weight: 600;
-              border-bottom: 1px solid #e5e7eb;
-            }
-            .failures {
-              background-color: #fef2f2;
-              border-left: 4px solid #dc2626;
-              padding: 12px;
-              border-radius: 4px;
-              font-family: 'Courier New', monospace;
-              font-size: 12px;
-              color: #7f1d1d;
-              white-space: pre-wrap;
-              word-break: break-word;
-            }
-            .footer {
-              background-color: #f9fafb;
-              border-top: 1px solid #e5e7eb;
-              padding: 12px 20px;
-              font-size: 12px;
-              color: #6b7280;
-              text-align: center;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Opel CSI QA Report</h1>
-              <p>Daily Survey Submission Status – ${report.date}</p>
-            </div>
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Opel CSI QA Report – ${report.date}</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #1f2937; background-color: #f9fafb; margin: 0; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    h1 { color: #111827; margin-top: 0; }
+    h2 { color: #374151; font-size: 18px; margin-top: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+    .stat-card { background-color: #f3f4f6; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; }
+    .stat-value { font-size: 28px; font-weight: bold; color: #111827; }
+    .stat-label { font-size: 14px; color: #6b7280; margin-top: 5px; }
+    .success { border-left-color: ${successBg}; }
+    .failed { border-left-color: ${failedBg}; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th { background-color: #f3f4f6; padding: 12px; text-align: left; font-weight: 600; color: #374151; border-bottom: 2px solid #d1d5db; }
+    .failures { background-color: #fef2f2; padding: 15px; border-radius: 4px; border-left: 4px solid ${failedBg}; margin: 20px 0; }
+    .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Opel CSI QA Helper Report</h1>
+    <p><strong>Report Date:</strong> ${report.date}</p>
+    <p><strong>Report Period:</strong> ${report.startTime} to ${report.endTime}</p>
 
-            <div class="stats">
-              <div class="stat">
-                <div class="stat-value">${report.totalAttempted}</div>
-                <div class="stat-label">Total Attempted</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value" style="color: #10b981;">${report.successful}</div>
-                <div class="stat-label">Successful</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value" style="color: #ef4444;">${report.failed}</div>
-                <div class="stat-label">Failed</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value" style="color: #06b6d4;">${report.successRate.toFixed(1)}%</div>
-                <div class="stat-label">Success Rate</div>
-              </div>
-            </div>
+    <h2>Summary Statistics</h2>
+    <div class="summary-grid">
+      <div class="stat-card">
+        <div class="stat-value">${report.totalAttempted}</div>
+        <div class="stat-label">Total Submissions</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-value">${report.successful}</div>
+        <div class="stat-label">Successful</div>
+      </div>
+      <div class="stat-card failed">
+        <div class="stat-value">${report.failed}</div>
+        <div class="stat-label">Failed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${report.successRate.toFixed(2)}%</div>
+        <div class="stat-label">Success Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">${(report.averageDuration / 1000).toFixed(2)}s</div>
+        <div class="stat-label">Avg Duration</div>
+      </div>
+    </div>
 
-            <div class="content">
-              <div class="section">
-                <div class="section-title">Submission Details</div>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>URL</th>
-                      <th>Status</th>
-                      <th>Time</th>
-                      <th>Duration</th>
-                      <th>Error</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${tableRows}
-                  </tbody>
-                </table>
-              </div>
-
-              ${
-                report.failed > 0
-                  ? `
-                <div class="section">
-                  <div class="section-title">Failures</div>
-                  <div class="failures">${report.failureDetails}</div>
-                </div>
-              `
-                  : ''
-              }
-            </div>
-
-            <div class="footer">
-              Generated on ${new Date().toLocaleString()} | Average Duration: ${report.averageDuration}ms
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
-  }
-
-  generateTextReport(report: DailyReport): string {
-    const header = `╔══════════════════════════════════════════════════════════╗
-║         Opel CSI QA Report – ${report.date}              ║
-╚══════════════════════════════════════════════════════════╝
-
-SUMMARY:
-  Total Submissions Attempted: ${report.totalAttempted}
-  Successful:                  ${report.successful}
-  Failed:                      ${report.failed}
-  Success Rate:                ${report.successRate.toFixed(2)}%
-  Average Duration:            ${report.averageDuration}ms
-
-DETAILS:
-`;
-
-    const table = `┌─────────────────────────────────────────────────┬────────┬───────┬────────────┐
-│ URL                                             │ Status │ Time  │ Duration   │
-├─────────────────────────────────────────────────┼────────┼───────┼────────────┤
-${report.details
-  .map((result) => {
-    const status = result.status === 'success' ? 'OK' : 'FAIL';
-    const time = new Date(result.timestamp).toLocaleTimeString();
-    const url = result.url.substring(0, 45).padEnd(45);
-    const duration = `${(result.duration / 1000).toFixed(1)}s`.padEnd(10);
-    return `│ ${url} │ ${status.padEnd(6)} │ ${time} │ ${duration} │`;
-  })
-  .join('\n')}
-└─────────────────────────────────────────────────┴────────┴───────┴────────────┘
-`;
-
-    const failures =
+    ${
       report.failed > 0
-        ? `\nFAILURES:\n${report.failureDetails}\n`
-        : '';
+        ? `
+    <div class="failures">
+      <h3 style="margin-top: 0; color: ${failedBg};">Failures</h3>
+      <pre style="white-space: pre-wrap; word-wrap: break-word; margin: 0; font-size: 12px;">${report.failureDetails}</pre>
+    </div>
+    `
+        : ''
+    }
 
-    return header + table + failures;
+    <h2>Detailed Results</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th style="text-align: center;">Status</th>
+          <th style="text-align: center;">Time</th>
+          <th style="text-align: center;">Duration</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${entryRows}
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <p>This report was automatically generated by Opel CSI QA Helper.</p>
+      <p>Generated: ${new Date().toISOString()}</p>
+    </div>
+  </div>
+</body>
+</html>
+    `.trim();
+
+    return html;
   }
 
+  /**
+   * Get current report entries
+   */
+  getEntries(): SurveyEntry[] {
+    return [...this.entries];
+  }
+
+  /**
+   * Clear all entries (typically after sending report)
+   */
   clear(): void {
-    this.results = [];
-    logger.info('Report generator cleared');
+    this.entries = [];
+    this.startTime = new Date();
+    logger.info('Report entries cleared');
+  }
+
+  /**
+   * Get statistics for a specific URL
+   */
+  getUrlStats(url: string): { total: number; successful: number; failed: number; successRate: number } {
+    const urlEntries = this.entries.filter((e) => e.url === url);
+    const successful = urlEntries.filter((e) => e.status === 'success').length;
+    const failed = urlEntries.filter((e) => e.status === 'failed').length;
+    const total = urlEntries.length;
+    const successRate = total > 0 ? (successful / total) * 100 : 0;
+
+    return { total, successful, failed, successRate };
   }
 }
