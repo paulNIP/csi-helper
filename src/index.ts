@@ -3,7 +3,6 @@ import path from 'path';
 import logger from './logger';
 import { getConfig, getUrlsConfig } from './config';
 import { ProxyManager } from './proxy-manager';
-import { SurveyRunner } from './survey-runner';
 import { ReportGenerator } from './report-generator';
 import { EmailSender } from './email-sender';
 import { Scheduler } from './scheduler';
@@ -70,15 +69,28 @@ async function scheduleAllTasks(): Promise<void> {
   logger.info('Scheduling tasks...');
 
   const urlsConfig = getUrlsConfig();
-  const schedule = generateDailySchedule(urlsConfig.urls, appState.config.runsPerDay);
 
-  logger.info(`Generated schedule for ${schedule.length} tasks`);
+  if (appState.config.useIntervalScheduling) {
+    logger.info(
+      `Using interval scheduling: every ${appState.config.intervalMinutes} minute(s)`,
+    );
+    const taskIds = appState.scheduler.scheduleImmediateWithIntervals(
+      urlsConfig.urls,
+      appState.config.intervalMinutes,
+    );
+    logger.info(`Scheduled ${taskIds.length} URL(s) at ${appState.config.intervalMinutes}-minute intervals`);
+  } else {
+    logger.info('Using cron-based daily scheduling');
+    const schedule = generateDailySchedule(urlsConfig.urls, appState.config.runsPerDay);
 
-  for (const entry of schedule) {
-    // appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
-    appState.scheduler.scheduleUrl(entry.url, 19, 17);
-    // Add delay to avoid overwhelming the system
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    logger.info(`Generated schedule for ${schedule.length} tasks`);
+
+    for (const entry of schedule) {
+    //   appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
+      appState.scheduler.scheduleUrl(entry.url, 13, 26);
+      // Add delay to avoid overwhelming the system
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
   }
 
   logger.info('All tasks scheduled');
@@ -146,7 +158,11 @@ async function main(): Promise<void> {
     await monitorFailures();
 
     const scheduledTasks = appState.scheduler.getScheduledTasks();
-    logger.info(`Ready! Monitoring ${scheduledTasks.length} scheduled tasks`);
+    const taskStats = appState.scheduler.getTaskStats();
+    logger.info(`Ready! Monitoring tasks:`);
+    logger.info(`  - Cron tasks: ${taskStats.cronTaskCount}`);
+    logger.info(`  - Interval tasks: ${taskStats.intervalTaskCount}`);
+    logger.info(`  - Total tasks: ${taskStats.totalTasks}`);
     logger.info('Press Ctrl+C to stop');
 
     // Handle graceful shutdown

@@ -2,7 +2,6 @@ import { ProxyConfig } from './config';
 import logger from './logger';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
-
 export interface ProxyServer {
   server: string;
   username?: string;
@@ -13,8 +12,7 @@ export class ProxyManager {
   private config: ProxyConfig;
   private sessionId: string | null = null;
 
-  constructor(config: ProxyConfig) {
-    this.config = config;
+  constructor(config: ProxyConfig) {    this.config = config;
   }
 
   /**
@@ -72,6 +70,7 @@ export class ProxyManager {
    * Test proxy connectivity
    */
   async testProxy(): Promise<boolean> {
+
     try {
       const axios = require('axios');
       const proxyServer = this.getProxyServer();
@@ -116,4 +115,5 @@ export class ProxyManager {
       return false;
     }
   }
+    
 }

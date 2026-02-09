@@ -1,8 +1,14 @@
-import { chromium, Browser, Page } from 'playwright';
+import { chromium, Browser, BrowserContext, Page } from 'playwright';
 import logger from './logger';
+import { ProxyConfig, getFormValuesConfig } from './config';
 import { ProxyManager } from './proxy-manager';
-import { getFormValuesConfig } from './config';
 import { delay, getRandomUserAgent, getRandomViewport, randomInt, weightedRandom, randomChoice } from './utils';
+
+interface UsabillaCheckResult {
+  usabilla_live: boolean;
+  ua_object: boolean;
+  usabilla_scripts: string[];
+}
 
 export interface SurveyResult {
   url: string;
@@ -28,13 +34,15 @@ export class SurveyRunner {
       const proxyServer = this.proxyManager.getProxyServer();
       this.browser = await chromium.launch({
         headless: true,
-        proxy: proxyServer.server ? {
-          server: proxyServer.server,
-          username: proxyServer.username,
-          password: proxyServer.password,
-        } : undefined,
+        proxy: proxyServer.server
+          ? {
+              server: proxyServer.server,
+              username: proxyServer.username,
+              password: proxyServer.password,
+            }
+          : undefined,
       });
-      logger.info('Browser initialized');
+      logger.info('Browser initialized with proxy support');
     } catch (error) {
       logger.error('Failed to initialize browser', { error: (error as Error).message });
       throw error;
@@ -50,33 +58,40 @@ export class SurveyRunner {
       duration: 0,
     };
 
+    let context: BrowserContext | null = null;
+    let page: Page | null = null;
+
     try {
       if (!this.browser) {
         throw new Error('Browser not initialized');
       }
 
-      const page = await this.browser.newPage({
+      // Create a fresh browser context with cleared cookies (per-visit isolation)
+      context = await this.browser.newContext({
         userAgent: getRandomUserAgent(),
         viewport: getRandomViewport(),
+        locale: 'de-DE',
       });
 
-      // Clear Usabilla cookies and storage
-      await this.clearUsabillaCookies(page);
+      // Clear cookies before visit to ensure clean state
+      await context.clearCookies();
+
+      page = await context.newPage();
 
       // Navigate to URL
       logger.info(`Navigating to ${url}`);
-      await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
-
-      // Wait for Usabilla widget to load
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
       await page.waitForLoadState('networkidle');
-      await delay(20_000);
+      await delay(2000);
 
-      // Trigger the survey
-      logger.info(`Triggering survey for ${url}`);
-      const surveyTriggered = await this.triggerSurvey(page);
+      // Handle cookie consent modal if it appears
+      await this.acceptCookiesIfPresent(page);
+
+      // Scroll page for 3-4 minutes while checking for Usabilla
+      const surveyTriggered = await this.scrollAndWaitForUsabilla(page);
 
       if (!surveyTriggered) {
-        throw new Error('Survey widget did not appear within 30s timeout');
+        throw new Error('Survey widget not found after scrolling');
       }
 
       // Fill and submit the survey
@@ -91,26 +106,22 @@ export class SurveyRunner {
       } catch {
         logger.warn('Failed to take screenshot');
       }
-
-      await page.close();
     } catch (error) {
       result.status = 'failed';
       result.error = (error as Error).message;
       logger.error(`Survey failed for ${url}`, { error: (error as Error).message });
 
       try {
-        const pages = this.browser?.contexts()[0]?.pages() || [];
-        for (const page of pages) {
-          try {
-            result.screenshot = await page.screenshot({ fullPage: true });
-          } catch {
-            // Ignore screenshot errors
-          }
-          await page.close();
+        if (page) {
+          result.screenshot = await page.screenshot({ fullPage: true });
         }
       } catch {
-        // Ignore cleanup errors
+        // Ignore screenshot errors
       }
+    } finally {
+      // Always close the context to ensure clean state for next run
+      if (page) await page.close();
+      if (context) await context.close();
     }
 
     result.duration = Date.now() - startTime;
@@ -118,40 +129,104 @@ export class SurveyRunner {
     return result;
   }
 
-  private async clearUsabillaCookies(page: Page): Promise<void> {
-    const cookies = await page.context().cookies();
-    const usabillaCookies = cookies.filter(
-      (c) => c.name.includes('usabilla') || c.name.includes('ub_')
-    );
+  private async scrollAndWaitForUsabilla(page: Page, maxDurationMs: number = 7 * 60 * 1000): Promise<boolean> {
+    try {
+      logger.info(`🔍 Scrolling page for up to ${Math.round(maxDurationMs / 1000)} seconds while checking for Usabilla`);
+      const startTime = Date.now();
+      const scrollIntervalMs = 5000; // Check Usabilla every 5 seconds
 
-    for (const cookie of usabillaCookies) {
-      await page.context().clearCookies({ name: cookie.name });
-    }
+      while (Date.now() - startTime < maxDurationMs) {
+        // Enhanced Usabilla detection (from attachment)
+        const usabillaCheckResult: UsabillaCheckResult = await page.evaluate(() => {
+          return {
+            usabilla_live: typeof (window as any).usabilla_live !== 'undefined',
+            ua_object: typeof (window as any)._ua !== 'undefined',
+            usabilla_scripts: Array.from(document.scripts)
+              .map(script => script.src)
+              .filter(src => Boolean(src && src.includes('usabilla')))
+          };
+        });
 
-    // Clear storage
-    await page.evaluate(() => {
-        try{
-            const keys = Object.keys(localStorage);
-            for (const key of keys) {
-                if (key.includes('usabilla') || key.includes('ub_')) {
-                localStorage.removeItem(key);
-                }
-            }
+        logger.info('🔎 Usabilla check:', usabillaCheckResult);
 
-        } catch {
-                return null;
+        // Trigger survey if any Usabilla indicator detected
+        if (usabillaCheckResult.usabilla_live || 
+            usabillaCheckResult.ua_object || 
+            usabillaCheckResult.usabilla_scripts.length > 0) {
+          logger.info('🎯 Usabilla detected on page!');
+          return await this.triggerSurvey(page);
         }
 
-    });
+        // Scroll using mouse wheel for more realistic behavior
+        await page.mouse.wheel(0, 4000);
+        await delay(scrollIntervalMs);
+      }
+
+      logger.info('❌ Usabilla NOT detected within timeout period');
+      return false;
+    } catch (error) {
+      logger.warn('Error during scroll and wait for Usabilla', { error: (error as Error).message });
+      return false;
+    }
   }
+
+  private async acceptCookiesIfPresent(page: Page): Promise<void> {
+    try {
+      // Try specific strict selector first (from attachment)
+      const strictSelector = 'a#_psaihm_id_accept_all_btn';
+      try {
+        const acceptCookiesLink = page.locator(strictSelector);
+        await acceptCookiesLink.waitFor({ state: 'visible', timeout: 20000 });
+        await acceptCookiesLink.click();
+        // Ensure CMP overlay is gone
+        await acceptCookiesLink.waitFor({ state: 'detached', timeout: 20000 });
+        logger.info('✅ Cookies accepted via strict accept-all link');
+        return;
+      } catch {
+        logger.info('ℹ️ Strict cookie accept link not found');
+      }
+
+      // Fallback: Common cookie consent selectors
+      const cookieSelectors = [
+        'button[class*="cookie-accept"]',
+        'button[class*="accept-all"]',
+        'button[class*="accept-cookies"]',
+        'button[id*="cookie-accept"]',
+        'button[id*="accept"]',
+        '.gdpr-cookie-consent button[class*="accept"]',
+        'button[class*="onetrust-accept"]',
+        '#onetrust-accept-btn-handler',
+        'button[class*="CookieConsent-accept"]',
+      ];
+
+      for (const selector of cookieSelectors) {
+        try {
+          const element = await page.$(selector);
+          if (element) {
+            logger.info(`Found cookie consent button: ${selector}`);
+            await element.click();
+            await delay(500);
+            logger.info('Cookie consent accepted');
+            return;
+          }
+        } catch {
+          // Continue to next selector
+        }
+      }
+
+      logger.info('⚠️ No cookie consent modal found — Usabilla may be blocked');
+    } catch (error) {
+      logger.warn('Error attempting to accept cookies', { error: (error as Error).message });
+    }
+  }
+
+
 
   private async triggerSurvey(page: Page): Promise<boolean> {
     try {
-      // Scroll through page until Usabilla appears
-      await this.scrollUntilUsabillaShows(page);
-      await delay(30_000);
+      await delay(1000);
 
-      // Inject and trigger Usabilla survey
+      // Trigger Usabilla survey
       const triggered = await page.evaluate(() => {
         return new Promise<boolean>((resolve) => {
           const checkAndTrigger = () => {
@@ -172,9 +247,9 @@ export class SurveyRunner {
       });
 
       if (triggered) {
-        // Wait for survey form to appear and take screenshot
-        await page.waitForSelector('[class*="usabilla"]', { timeout: 60_000 }).catch(() => {});
-        await delay(10_000);
+        // Wait for survey form to appear
+        await page.waitForSelector('[class*="usabilla"]', { timeout: 5000 }).catch(() => {});
+        await delay(1500);
         
         // Take screenshot of initial survey state
         try {
@@ -188,40 +263,9 @@ export class SurveyRunner {
         return true;
       }
       return false;
-    } catch {
-      return false;
-    }
-  }
-
-  private async scrollUntilUsabillaShows(page: Page, maxAttempts: number = 5): Promise<void> {
-    try {
-      let attempts = 0;
-      while (attempts < maxAttempts) {
-        // Check if Usabilla is visible
-        const isUsabillaVisible = await page.evaluate(() => {
-          const usabillaElement = document.querySelector('[class*="usabilla"]');
-          if (!usabillaElement) return false;
-          const rect = usabillaElement.getBoundingClientRect();
-          return rect.top < window.innerHeight && rect.bottom > 0;
-        });
-
-        if (isUsabillaVisible) {
-          logger.info('Usabilla widget found and visible');
-          return;
-        }
-
-        // Scroll down smoothly
-        await page.evaluate(() => {
-          window.scrollBy({ top: 300, behavior: 'smooth' });
-        });
-
-        await delay(10_000);
-        attempts++;
-      }
-
-      logger.info('Completed scrolling attempts for Usabilla widget');
     } catch (error) {
-      logger.warn('Error during scroll until Usabilla', { error: (error as Error).message });
+      logger.warn('Error triggering survey', { error: (error as Error).message });
+      return false;
     }
   }
 

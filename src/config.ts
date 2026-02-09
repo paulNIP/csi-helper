@@ -26,6 +26,9 @@ export interface AppConfig {
   reportTime: string;
   nodeEnv: string;
   logLevel: string;
+  useIntervalScheduling: boolean;
+  intervalMinutes: number;
+  useDirectAPI: boolean;
 }
 
 export interface UrlsConfig {
@@ -61,6 +64,9 @@ export function getConfig(): AppConfig {
     reportTime: process.env.REPORT_TIME || '22:00',
     nodeEnv: process.env.NODE_ENV || 'development',
     logLevel: process.env.LOG_LEVEL || 'info',
+    useIntervalScheduling: process.env.USE_INTERVAL_SCHEDULING === 'true' || false,
+    intervalMinutes: parseInt(process.env.INTERVAL_MINUTES || '5', 10),
+    useDirectAPI: process.env.USE_DIRECT_API === 'true' || true,
   };
 }
 
