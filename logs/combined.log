@@ -2990,3 +2990,512 @@
 [2026-02-09 14:25:05] INFO: Daily report sent successfully
 [2026-02-09 14:25:05] INFO: Report entries cleared
 [2026-02-09 14:27:45] INFO: Shutting down...
+[2026-02-13 21:28:38] INFO: ============================================================
+[2026-02-13 21:28:38] INFO: Opel CSI Survey QA Helper
+[2026-02-13 21:28:38] INFO: Started at 2026-02-13T18:28:38.756Z
+[2026-02-13 21:28:38] INFO: Environment: production
+[2026-02-13 21:28:38] INFO: ============================================================
+[2026-02-13 21:28:38] INFO: Initializing Opel CSI QA Helper...
+[2026-02-13 21:28:38] INFO: Testing proxy connection...
+[2026-02-13 21:28:40] INFO: Testing email connection...
+[2026-02-13 21:28:43] INFO: Email connection verified
+[2026-02-13 21:28:43] INFO: Initialization complete
+[2026-02-13 21:28:43] INFO: Scheduling tasks...
+[2026-02-13 21:28:43] INFO: Using cron-based daily scheduling
+[2026-02-13 21:28:43] INFO: Generated schedule for 3 tasks
+[2026-02-13 21:28:43] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-0:32 at 0:32
+[2026-02-13 21:28:43] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-13 21:28:44] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-10:35 at 10:35
+[2026-02-13 21:28:44] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-13 21:28:44] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-13:13 at 13:13
+[2026-02-13 21:28:44] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:10 at 14:10
+[2026-02-13 21:28:44] INFO: All tasks scheduled
+[2026-02-13 21:28:44] INFO: Scheduled daily report at 14:25
+[2026-02-13 21:28:44] INFO: Ready! Monitoring tasks:
+[2026-02-13 21:28:44] INFO:   - Cron tasks: 5
+[2026-02-13 21:28:44] INFO:   - Interval tasks: 0
+[2026-02-13 21:28:44] INFO:   - Total tasks: 5
+[2026-02-13 21:28:44] INFO: Press Ctrl+C to stop
+[2026-02-13 21:28:48] INFO: Shutting down...
+[2026-02-15 10:28:34] INFO: ============================================================
+[2026-02-15 10:28:34] INFO: Opel CSI Survey QA Helper
+[2026-02-15 10:28:34] INFO: Started at 2026-02-15T07:28:34.226Z
+[2026-02-15 10:28:34] INFO: Environment: production
+[2026-02-15 10:28:34] INFO: ============================================================
+[2026-02-15 10:28:34] INFO: Initializing Opel CSI QA Helper...
+[2026-02-15 10:28:34] INFO: Testing proxy connection...
+[2026-02-15 10:28:34] WARN: Proxy credentials not configured
+[2026-02-15 10:28:34] INFO: Created proxy agent with .de password for URL: default
+[2026-02-15 10:28:35] ERROR: Proxy test failed {"error":"Request failed with status code 407"}
+[2026-02-15 10:28:35] WARN: Proxy test failed, continuing anyway
+[2026-02-15 10:28:35] INFO: Testing email connection...
+[2026-02-15 10:28:39] INFO: Email connection verified
+[2026-02-15 10:28:39] INFO: Initialization complete
+[2026-02-15 10:28:39] INFO: Testing all URLs via proxy...
+[2026-02-15 10:28:39] INFO: [1/11] Testing URL: https://www.opel.de
+[2026-02-15 10:28:39] WARN: Proxy credentials not configured
+[2026-02-15 10:28:39] INFO: Created proxy agent with .de password for URL: https://www.opel.de
+[2026-02-15 10:28:39] ERROR: Target URL test failed for https://www.opel.de {"error":"HTTP 407","responseTime":720}
+[2026-02-15 10:28:39] WARN: Failed to test URL 1/11: https://www.opel.de (Error: HTTP 407)
+[2026-02-15 10:28:39] INFO: [2/11] Testing URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:28:39] WARN: Proxy credentials not configured
+[2026-02-15 10:28:39] INFO: Created proxy agent with .de password for URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:28:40] ERROR: Target URL test failed for https://store.opel.de/vehicles?channel=rockse {"error":"HTTP 407","responseTime":734}
+[2026-02-15 10:28:40] WARN: Failed to test URL 2/11: https://store.opel.de/vehicles?channel=rockse (Error: HTTP 407)
+[2026-02-15 10:28:40] INFO: [3/11] Testing URL: https://www.opel.fr
+[2026-02-15 10:28:40] WARN: Proxy credentials not configured
+[2026-02-15 10:28:40] INFO: Created proxy agent with non-.de password for URL: https://www.opel.fr
+[2026-02-15 10:28:41] ERROR: Target URL test failed for https://www.opel.fr {"error":"HTTP 407","responseTime":747}
+[2026-02-15 10:28:41] WARN: Failed to test URL 3/11: https://www.opel.fr (Error: HTTP 407)
+[2026-02-15 10:28:41] INFO: [4/11] Testing URL: https://www.opel.it
+[2026-02-15 10:28:41] WARN: Proxy credentials not configured
+[2026-02-15 10:28:41] INFO: Created proxy agent with non-.de password for URL: https://www.opel.it
+[2026-02-15 10:28:42] ERROR: Target URL test failed for https://www.opel.it {"error":"HTTP 407","responseTime":778}
+[2026-02-15 10:28:42] WARN: Failed to test URL 4/11: https://www.opel.it (Error: HTTP 407)
+[2026-02-15 10:28:42] INFO: [5/11] Testing URL: https://www.opel.es
+[2026-02-15 10:28:42] WARN: Proxy credentials not configured
+[2026-02-15 10:28:42] INFO: Created proxy agent with non-.de password for URL: https://www.opel.es
+[2026-02-15 10:28:42] ERROR: Target URL test failed for https://www.opel.es {"error":"HTTP 407","responseTime":792}
+[2026-02-15 10:28:42] WARN: Failed to test URL 5/11: https://www.opel.es (Error: HTTP 407)
+[2026-02-15 10:28:42] INFO: [6/11] Testing URL: https://www.opel.nl
+[2026-02-15 10:28:42] WARN: Proxy credentials not configured
+[2026-02-15 10:28:42] INFO: Created proxy agent with non-.de password for URL: https://www.opel.nl
+[2026-02-15 10:28:44] ERROR: Target URL test failed for https://www.opel.nl {"error":"HTTP 407","responseTime":1051}
+[2026-02-15 10:28:44] WARN: Failed to test URL 6/11: https://www.opel.nl (Error: HTTP 407)
+[2026-02-15 10:28:44] INFO: [7/11] Testing URL: https://www.opel.be
+[2026-02-15 10:28:44] WARN: Proxy credentials not configured
+[2026-02-15 10:28:44] INFO: Created proxy agent with non-.de password for URL: https://www.opel.be
+[2026-02-15 10:28:45] ERROR: Target URL test failed for https://www.opel.be {"error":"HTTP 407","responseTime":1251}
+[2026-02-15 10:28:45] WARN: Failed to test URL 7/11: https://www.opel.be (Error: HTTP 407)
+[2026-02-15 10:28:45] INFO: [8/11] Testing URL: https://www.opel.at
+[2026-02-15 10:28:45] WARN: Proxy credentials not configured
+[2026-02-15 10:28:45] INFO: Created proxy agent with non-.de password for URL: https://www.opel.at
+[2026-02-15 10:28:45] ERROR: Target URL test failed for https://www.opel.at {"error":"HTTP 407","responseTime":722}
+[2026-02-15 10:28:45] WARN: Failed to test URL 8/11: https://www.opel.at (Error: HTTP 407)
+[2026-02-15 10:28:45] INFO: [9/11] Testing URL: https://www.opel.pl
+[2026-02-15 10:28:45] WARN: Proxy credentials not configured
+[2026-02-15 10:28:45] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pl
+[2026-02-15 10:28:46] ERROR: Target URL test failed for https://www.opel.pl {"error":"HTTP 407","responseTime":722}
+[2026-02-15 10:28:46] WARN: Failed to test URL 9/11: https://www.opel.pl (Error: HTTP 407)
+[2026-02-15 10:28:46] INFO: [10/11] Testing URL: https://www.opel.pt
+[2026-02-15 10:28:46] WARN: Proxy credentials not configured
+[2026-02-15 10:28:46] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pt
+[2026-02-15 10:28:47] ERROR: Target URL test failed for https://www.opel.pt {"error":"HTTP 407","responseTime":735}
+[2026-02-15 10:28:47] WARN: Failed to test URL 10/11: https://www.opel.pt (Error: HTTP 407)
+[2026-02-15 10:28:47] INFO: [11/11] Testing URL: https://www.vauxhall.co.uk
+[2026-02-15 10:28:47] WARN: Proxy credentials not configured
+[2026-02-15 10:28:47] INFO: Created proxy agent with non-.de password for URL: https://www.vauxhall.co.uk
+[2026-02-15 10:28:48] ERROR: Target URL test failed for https://www.vauxhall.co.uk {"error":"HTTP 407","responseTime":753}
+[2026-02-15 10:28:48] WARN: Failed to test URL 11/11: https://www.vauxhall.co.uk (Error: HTTP 407)
+[2026-02-15 10:28:48] INFO: URL testing complete: 0 successful, 11 failed
+[2026-02-15 10:28:48] INFO: Scheduling tasks...
+[2026-02-15 10:28:48] INFO: Using cron-based daily scheduling
+[2026-02-15 10:28:48] INFO: Generated schedule for 33 tasks
+[2026-02-15 10:28:48] INFO: Scheduled task: https://www.opel.de-8:22 at 8:22
+[2026-02-15 10:28:48] INFO: Scheduled task: https://www.opel.de-12:3 at 12:03
+[2026-02-15 10:28:48] INFO: Scheduled task: https://www.opel.de-19:56 at 19:56
+[2026-02-15 10:28:48] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-9:29 at 9:29
+[2026-02-15 10:28:48] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-12:54 at 12:54
+[2026-02-15 10:28:48] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-20:48 at 20:48
+[2026-02-15 10:28:48] INFO: Scheduled task: https://www.opel.fr-11:57 at 11:57
+[2026-02-15 10:28:48] INFO: Scheduled task: https://www.opel.fr-15:36 at 15:36
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.fr-18:54 at 18:54
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.it-10:9 at 10:09
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.it-13:16 at 13:16
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.it-21:18 at 21:18
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.es-9:4 at 9:04
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.es-13:43 at 13:43
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.es-21:9 at 21:09
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.nl-8:12 at 8:12
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.nl-15:56 at 15:56
+[2026-02-15 10:28:49] INFO: Scheduled task: https://www.opel.nl-19:31 at 19:31
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.be-9:41 at 9:41
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.be-13:10 at 13:10
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.be-18:54 at 18:54
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.at-8:45 at 8:45
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.at-14:47 at 14:47
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.at-17:4 at 17:04
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.pl-8:44 at 8:44
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.pl-12:34 at 12:34
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.pl-20:50 at 20:50
+[2026-02-15 10:28:50] INFO: Scheduled task: https://www.opel.pt-9:28 at 9:28
+[2026-02-15 10:28:51] INFO: Scheduled task: https://www.opel.pt-13:42 at 13:42
+[2026-02-15 10:28:51] INFO: Scheduled task: https://www.opel.pt-20:21 at 20:21
+[2026-02-15 10:28:51] INFO: Scheduled task: https://www.vauxhall.co.uk-11:16 at 11:16
+[2026-02-15 10:28:51] INFO: Scheduled task: https://www.vauxhall.co.uk-14:45 at 14:45
+[2026-02-15 10:28:51] INFO: Scheduled task: https://www.vauxhall.co.uk-19:9 at 19:09
+[2026-02-15 10:28:51] INFO: All tasks scheduled
+[2026-02-15 10:28:51] INFO: Scheduled daily report at 14:25
+[2026-02-15 10:28:51] INFO: Ready! Monitoring tasks:
+[2026-02-15 10:28:51] INFO:   - Cron tasks: 34
+[2026-02-15 10:28:51] INFO:   - Interval tasks: 0
+[2026-02-15 10:28:51] INFO:   - Total tasks: 34
+[2026-02-15 10:28:51] INFO: Press Ctrl+C to stop
+[2026-02-15 10:30:23] INFO: Shutting down...
+[2026-02-15 10:30:31] INFO: ============================================================
+[2026-02-15 10:30:31] INFO: Opel CSI Survey QA Helper
+[2026-02-15 10:30:31] INFO: Started at 2026-02-15T07:30:31.155Z
+[2026-02-15 10:30:31] INFO: Environment: production
+[2026-02-15 10:30:31] INFO: ============================================================
+[2026-02-15 10:30:31] INFO: Initializing Opel CSI QA Helper...
+[2026-02-15 10:30:31] INFO: Testing proxy connection...
+[2026-02-15 10:30:31] WARN: Proxy credentials not configured
+[2026-02-15 10:30:31] INFO: Created proxy agent with .de password for URL: default
+[2026-02-15 10:30:31] ERROR: Proxy test failed {"error":"Proxy connection ended before receiving CONNECT response"}
+[2026-02-15 10:30:31] WARN: Proxy test failed, continuing anyway
+[2026-02-15 10:30:31] INFO: Testing email connection...
+[2026-02-15 10:30:35] INFO: Email connection verified
+[2026-02-15 10:30:35] INFO: Initialization complete
+[2026-02-15 10:30:35] INFO: Testing all URLs via proxy...
+[2026-02-15 10:30:35] INFO: [1/11] Testing URL: https://www.opel.de
+[2026-02-15 10:30:35] WARN: Proxy credentials not configured
+[2026-02-15 10:30:35] INFO: Created proxy agent with .de password for URL: https://www.opel.de
+[2026-02-15 10:30:35] ERROR: Target URL test failed for https://www.opel.de {"error":"Proxy connection ended before receiving CONNECT response","responseTime":473}
+[2026-02-15 10:30:35] WARN: Failed to test URL 1/11: https://www.opel.de (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:35] INFO: [2/11] Testing URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:30:35] WARN: Proxy credentials not configured
+[2026-02-15 10:30:35] INFO: Created proxy agent with .de password for URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:30:36] ERROR: Target URL test failed for https://store.opel.de/vehicles?channel=rockse {"error":"Proxy connection ended before receiving CONNECT response","responseTime":746}
+[2026-02-15 10:30:36] WARN: Failed to test URL 2/11: https://store.opel.de/vehicles?channel=rockse (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:36] INFO: [3/11] Testing URL: https://www.opel.fr
+[2026-02-15 10:30:36] WARN: Proxy credentials not configured
+[2026-02-15 10:30:36] INFO: Created proxy agent with non-.de password for URL: https://www.opel.fr
+[2026-02-15 10:30:37] ERROR: Target URL test failed for https://www.opel.fr {"error":"Proxy connection ended before receiving CONNECT response","responseTime":730}
+[2026-02-15 10:30:37] WARN: Failed to test URL 3/11: https://www.opel.fr (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:37] INFO: [4/11] Testing URL: https://www.opel.it
+[2026-02-15 10:30:37] WARN: Proxy credentials not configured
+[2026-02-15 10:30:37] INFO: Created proxy agent with non-.de password for URL: https://www.opel.it
+[2026-02-15 10:30:37] ERROR: Target URL test failed for https://www.opel.it {"error":"Proxy connection ended before receiving CONNECT response","responseTime":765}
+[2026-02-15 10:30:37] WARN: Failed to test URL 4/11: https://www.opel.it (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:37] INFO: [5/11] Testing URL: https://www.opel.es
+[2026-02-15 10:30:37] WARN: Proxy credentials not configured
+[2026-02-15 10:30:37] INFO: Created proxy agent with non-.de password for URL: https://www.opel.es
+[2026-02-15 10:30:38] ERROR: Target URL test failed for https://www.opel.es {"error":"Proxy connection ended before receiving CONNECT response","responseTime":721}
+[2026-02-15 10:30:38] WARN: Failed to test URL 5/11: https://www.opel.es (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:38] INFO: [6/11] Testing URL: https://www.opel.nl
+[2026-02-15 10:30:38] WARN: Proxy credentials not configured
+[2026-02-15 10:30:38] INFO: Created proxy agent with non-.de password for URL: https://www.opel.nl
+[2026-02-15 10:30:39] ERROR: Target URL test failed for https://www.opel.nl {"error":"Proxy connection ended before receiving CONNECT response","responseTime":724}
+[2026-02-15 10:30:39] WARN: Failed to test URL 6/11: https://www.opel.nl (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:39] INFO: [7/11] Testing URL: https://www.opel.be
+[2026-02-15 10:30:39] WARN: Proxy credentials not configured
+[2026-02-15 10:30:39] INFO: Created proxy agent with non-.de password for URL: https://www.opel.be
+[2026-02-15 10:30:39] ERROR: Target URL test failed for https://www.opel.be {"error":"Proxy connection ended before receiving CONNECT response","responseTime":774}
+[2026-02-15 10:30:39] WARN: Failed to test URL 7/11: https://www.opel.be (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:39] INFO: [8/11] Testing URL: https://www.opel.at
+[2026-02-15 10:30:39] WARN: Proxy credentials not configured
+[2026-02-15 10:30:39] INFO: Created proxy agent with non-.de password for URL: https://www.opel.at
+[2026-02-15 10:30:40] ERROR: Target URL test failed for https://www.opel.at {"error":"Proxy connection ended before receiving CONNECT response","responseTime":768}
+[2026-02-15 10:30:40] WARN: Failed to test URL 8/11: https://www.opel.at (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:40] INFO: [9/11] Testing URL: https://www.opel.pl
+[2026-02-15 10:30:40] WARN: Proxy credentials not configured
+[2026-02-15 10:30:40] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pl
+[2026-02-15 10:30:41] ERROR: Target URL test failed for https://www.opel.pl {"error":"Proxy connection ended before receiving CONNECT response","responseTime":758}
+[2026-02-15 10:30:41] WARN: Failed to test URL 9/11: https://www.opel.pl (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:41] INFO: [10/11] Testing URL: https://www.opel.pt
+[2026-02-15 10:30:41] WARN: Proxy credentials not configured
+[2026-02-15 10:30:41] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pt
+[2026-02-15 10:30:42] ERROR: Target URL test failed for https://www.opel.pt {"error":"Proxy connection ended before receiving CONNECT response","responseTime":708}
+[2026-02-15 10:30:42] WARN: Failed to test URL 10/11: https://www.opel.pt (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:42] INFO: [11/11] Testing URL: https://www.vauxhall.co.uk
+[2026-02-15 10:30:42] WARN: Proxy credentials not configured
+[2026-02-15 10:30:42] INFO: Created proxy agent with non-.de password for URL: https://www.vauxhall.co.uk
+[2026-02-15 10:30:43] ERROR: Target URL test failed for https://www.vauxhall.co.uk {"error":"Proxy connection ended before receiving CONNECT response","responseTime":971}
+[2026-02-15 10:30:43] WARN: Failed to test URL 11/11: https://www.vauxhall.co.uk (Error: Proxy connection ended before receiving CONNECT response)
+[2026-02-15 10:30:43] INFO: URL testing complete: 0 successful, 11 failed
+[2026-02-15 10:30:43] INFO: Scheduling tasks...
+[2026-02-15 10:30:43] INFO: Using cron-based daily scheduling
+[2026-02-15 10:30:43] INFO: Generated schedule for 33 tasks
+[2026-02-15 10:30:43] INFO: Scheduled task: https://www.opel.de-8:16 at 8:16
+[2026-02-15 10:30:43] INFO: Scheduled task: https://www.opel.de-13:43 at 13:43
+[2026-02-15 10:30:43] INFO: Scheduled task: https://www.opel.de-17:44 at 17:44
+[2026-02-15 10:30:43] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-9:55 at 9:55
+[2026-02-15 10:30:43] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-12:48 at 12:48
+[2026-02-15 10:30:43] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-17:31 at 17:31
+[2026-02-15 10:30:43] INFO: Scheduled task: https://www.opel.fr-11:29 at 11:29
+[2026-02-15 10:30:43] INFO: Scheduled task: https://www.opel.fr-13:28 at 13:28
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.fr-18:20 at 18:20
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.it-10:46 at 10:46
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.it-14:24 at 14:24
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.it-17:8 at 17:08
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.es-8:42 at 8:42
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.es-13:22 at 13:22
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.es-20:48 at 20:48
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.nl-8:39 at 8:39
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.nl-15:47 at 15:47
+[2026-02-15 10:30:44] INFO: Scheduled task: https://www.opel.nl-18:36 at 18:36
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.be-9:9 at 9:09
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.be-15:21 at 15:21
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.be-19:36 at 19:36
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.at-8:32 at 8:32
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.at-15:3 at 15:03
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.at-17:13 at 17:13
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.pl-8:13 at 8:13
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.pl-12:59 at 12:59
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.pl-17:3 at 17:03
+[2026-02-15 10:30:45] INFO: Scheduled task: https://www.opel.pt-11:15 at 11:15
+[2026-02-15 10:30:46] INFO: Scheduled task: https://www.opel.pt-12:12 at 12:12
+[2026-02-15 10:30:46] INFO: Scheduled task: https://www.opel.pt-20:43 at 20:43
+[2026-02-15 10:30:46] INFO: Scheduled task: https://www.vauxhall.co.uk-10:28 at 10:28
+[2026-02-15 10:30:46] INFO: Scheduled task: https://www.vauxhall.co.uk-13:25 at 13:25
+[2026-02-15 10:30:46] INFO: Scheduled task: https://www.vauxhall.co.uk-19:40 at 19:40
+[2026-02-15 10:30:46] INFO: All tasks scheduled
+[2026-02-15 10:30:46] INFO: Scheduled daily report at 14:25
+[2026-02-15 10:30:46] INFO: Ready! Monitoring tasks:
+[2026-02-15 10:30:46] INFO:   - Cron tasks: 34
+[2026-02-15 10:30:46] INFO:   - Interval tasks: 0
+[2026-02-15 10:30:46] INFO:   - Total tasks: 34
+[2026-02-15 10:30:46] INFO: Press Ctrl+C to stop
+[2026-02-15 10:43:03] INFO: Shutting down...
+[2026-02-15 10:44:45] INFO: ============================================================
+[2026-02-15 10:44:45] INFO: Opel CSI Survey QA Helper
+[2026-02-15 10:44:45] INFO: Started at 2026-02-15T07:44:45.945Z
+[2026-02-15 10:44:45] INFO: Environment: production
+[2026-02-15 10:44:45] INFO: ============================================================
+[2026-02-15 10:44:45] INFO: Initializing Opel CSI QA Helper...
+[2026-02-15 10:44:45] INFO: Proxy credentials validated
+[2026-02-15 10:44:45] INFO: Testing proxy connection...
+[2026-02-15 10:44:45] INFO: Created proxy agent with .de password for URL: default
+[2026-02-15 10:44:48] INFO: Proxy test successful with .de password. IP: 2.203.110.165
+[2026-02-15 10:44:48] INFO: Testing email connection...
+[2026-02-15 10:44:52] INFO: Email connection verified
+[2026-02-15 10:44:52] INFO: Initialization complete
+[2026-02-15 10:44:52] INFO: Testing all URLs via proxy...
+[2026-02-15 10:44:52] INFO: [1/11] Testing URL: https://www.opel.de
+[2026-02-15 10:44:52] INFO: Created proxy agent with .de password for URL: https://www.opel.de
+[2026-02-15 10:44:55] INFO: Target URL test successful with .de password. Status: 200, Time: 2859ms
+[2026-02-15 10:44:55] INFO: Successfully tested URL 1/11: https://www.opel.de (Status: 200, Time: 2859ms)
+[2026-02-15 10:44:55] INFO: [2/11] Testing URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:44:55] INFO: Created proxy agent with .de password for URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:44:59] INFO: Target URL test successful with .de password. Status: 200, Time: 4102ms
+[2026-02-15 10:44:59] INFO: Successfully tested URL 2/11: https://store.opel.de/vehicles?channel=rockse (Status: 200, Time: 4102ms)
+[2026-02-15 10:44:59] INFO: [3/11] Testing URL: https://www.opel.fr
+[2026-02-15 10:44:59] INFO: Created proxy agent with non-.de password for URL: https://www.opel.fr
+[2026-02-15 10:45:02] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2734ms
+[2026-02-15 10:45:02] INFO: Successfully tested URL 3/11: https://www.opel.fr (Status: 200, Time: 2734ms)
+[2026-02-15 10:45:02] INFO: [4/11] Testing URL: https://www.opel.it
+[2026-02-15 10:45:02] INFO: Created proxy agent with non-.de password for URL: https://www.opel.it
+[2026-02-15 10:45:04] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2776ms
+[2026-02-15 10:45:04] INFO: Successfully tested URL 4/11: https://www.opel.it (Status: 200, Time: 2776ms)
+[2026-02-15 10:45:04] INFO: [5/11] Testing URL: https://www.opel.es
+[2026-02-15 10:45:04] INFO: Created proxy agent with non-.de password for URL: https://www.opel.es
+[2026-02-15 10:45:07] INFO: Target URL test successful with non-.de password. Status: 200, Time: 3107ms
+[2026-02-15 10:45:07] INFO: Successfully tested URL 5/11: https://www.opel.es (Status: 200, Time: 3107ms)
+[2026-02-15 10:45:07] INFO: [6/11] Testing URL: https://www.opel.nl
+[2026-02-15 10:45:07] INFO: Created proxy agent with non-.de password for URL: https://www.opel.nl
+[2026-02-15 10:45:10] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2403ms
+[2026-02-15 10:45:10] INFO: Successfully tested URL 6/11: https://www.opel.nl (Status: 200, Time: 2403ms)
+[2026-02-15 10:45:10] INFO: [7/11] Testing URL: https://www.opel.be
+[2026-02-15 10:45:10] INFO: Created proxy agent with non-.de password for URL: https://www.opel.be
+[2026-02-15 10:45:23] INFO: Target URL test successful with non-.de password. Status: 200, Time: 12870ms
+[2026-02-15 10:45:23] INFO: Successfully tested URL 7/11: https://www.opel.be (Status: 200, Time: 12870ms)
+[2026-02-15 10:45:23] INFO: [8/11] Testing URL: https://www.opel.at
+[2026-02-15 10:45:23] INFO: Created proxy agent with non-.de password for URL: https://www.opel.at
+[2026-02-15 10:45:27] INFO: Target URL test successful with non-.de password. Status: 200, Time: 4387ms
+[2026-02-15 10:45:27] INFO: Successfully tested URL 8/11: https://www.opel.at (Status: 200, Time: 4387ms)
+[2026-02-15 10:45:27] INFO: [9/11] Testing URL: https://www.opel.pl
+[2026-02-15 10:45:27] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pl
+[2026-02-15 10:45:29] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2250ms
+[2026-02-15 10:45:29] INFO: Successfully tested URL 9/11: https://www.opel.pl (Status: 200, Time: 2250ms)
+[2026-02-15 10:45:29] INFO: [10/11] Testing URL: https://www.opel.pt
+[2026-02-15 10:45:29] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pt
+[2026-02-15 10:45:31] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2000ms
+[2026-02-15 10:45:31] INFO: Successfully tested URL 10/11: https://www.opel.pt (Status: 200, Time: 2000ms)
+[2026-02-15 10:45:31] INFO: [11/11] Testing URL: https://www.vauxhall.co.uk
+[2026-02-15 10:45:31] INFO: Created proxy agent with non-.de password for URL: https://www.vauxhall.co.uk
+[2026-02-15 10:45:34] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2865ms
+[2026-02-15 10:45:34] INFO: Successfully tested URL 11/11: https://www.vauxhall.co.uk (Status: 200, Time: 2865ms)
+[2026-02-15 10:45:34] INFO: URL testing complete: 11 successful, 0 failed
+[2026-02-15 10:45:34] INFO: Scheduling tasks...
+[2026-02-15 10:45:34] INFO: Using cron-based daily scheduling
+[2026-02-15 10:45:34] INFO: Generated schedule for 33 tasks
+[2026-02-15 10:45:34] INFO: Scheduled task: https://www.opel.de-8:20 at 8:20
+[2026-02-15 10:45:34] INFO: Scheduled task: https://www.opel.de-12:55 at 12:55
+[2026-02-15 10:45:34] INFO: Scheduled task: https://www.opel.de-20:20 at 20:20
+[2026-02-15 10:45:35] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-8:48 at 8:48
+[2026-02-15 10:45:35] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-12:45 at 12:45
+[2026-02-15 10:45:35] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-21:32 at 21:32
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.fr-8:41 at 8:41
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.fr-15:51 at 15:51
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.fr-18:26 at 18:26
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.it-9:37 at 9:37
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.it-14:59 at 14:59
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.it-17:38 at 17:38
+[2026-02-15 10:45:35] INFO: Scheduled task: https://www.opel.es-8:32 at 8:32
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.es-15:50 at 15:50
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.es-19:32 at 19:32
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.nl-9:9 at 9:09
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.nl-12:48 at 12:48
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.nl-21:50 at 21:50
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.be-8:2 at 8:02
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.be-15:45 at 15:45
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.be-19:9 at 19:09
+[2026-02-15 10:45:36] INFO: Scheduled task: https://www.opel.at-11:46 at 11:46
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.at-12:32 at 12:32
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.at-19:42 at 19:42
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pl-9:7 at 9:07
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pl-12:12 at 12:12
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pl-18:37 at 18:37
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pt-8:11 at 8:11
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pt-13:52 at 13:52
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.opel.pt-20:52 at 20:52
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.vauxhall.co.uk-8:45 at 8:45
+[2026-02-15 10:45:37] INFO: Scheduled task: https://www.vauxhall.co.uk-13:41 at 13:41
+[2026-02-15 10:45:38] INFO: Scheduled task: https://www.vauxhall.co.uk-17:34 at 17:34
+[2026-02-15 10:45:38] INFO: All tasks scheduled
+[2026-02-15 10:45:38] INFO: Scheduled daily report at 14:25
+[2026-02-15 10:45:38] INFO: Ready! Monitoring tasks:
+[2026-02-15 10:45:38] INFO:   - Cron tasks: 34
+[2026-02-15 10:45:38] INFO:   - Interval tasks: 0
+[2026-02-15 10:45:38] INFO:   - Total tasks: 34
+[2026-02-15 10:45:38] INFO: Press Ctrl+C to stop
+[2026-02-15 10:49:01] INFO: Shutting down...
+[2026-02-15 10:57:55] INFO: ============================================================
+[2026-02-15 10:57:55] INFO: Opel CSI Survey QA Helper
+[2026-02-15 10:57:55] INFO: Started at 2026-02-15T07:57:55.477Z
+[2026-02-15 10:57:55] INFO: Environment: production
+[2026-02-15 10:57:55] INFO: ============================================================
+[2026-02-15 10:57:55] INFO: Initializing Opel CSI QA Helper...
+[2026-02-15 10:57:55] INFO: Proxy credentials validated
+[2026-02-15 10:57:55] INFO: Testing proxy connection...
+[2026-02-15 10:57:55] INFO: Created proxy agent with .de password for URL: default
+[2026-02-15 10:57:57] INFO: Proxy test successful with .de password. IP: 89.233.85.114
+[2026-02-15 10:57:57] INFO: Testing email connection...
+[2026-02-15 10:58:00] INFO: Email connection verified
+[2026-02-15 10:58:00] INFO: Initialization complete
+[2026-02-15 10:58:00] INFO: Testing all URLs via proxy...
+[2026-02-15 10:58:00] INFO: [1/11] Testing URL: https://www.opel.de
+[2026-02-15 10:58:00] INFO: Created proxy agent with .de password for URL: https://www.opel.de
+[2026-02-15 10:58:01] INFO: Target URL test successful with .de password. Status: 200, Time: 1717ms
+[2026-02-15 10:58:01] INFO: Successfully tested URL 1/11: https://www.opel.de (Status: 200, Time: 1717ms)
+[2026-02-15 10:58:01] INFO: [2/11] Testing URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:58:01] INFO: Created proxy agent with .de password for URL: https://store.opel.de/vehicles?channel=rockse
+[2026-02-15 10:58:04] INFO: Target URL test successful with .de password. Status: 200, Time: 2867ms
+[2026-02-15 10:58:04] INFO: Successfully tested URL 2/11: https://store.opel.de/vehicles?channel=rockse (Status: 200, Time: 2867ms)
+[2026-02-15 10:58:04] INFO: [3/11] Testing URL: https://www.opel.fr
+[2026-02-15 10:58:04] INFO: Created proxy agent with non-.de password for URL: https://www.opel.fr
+[2026-02-15 10:58:06] INFO: Target URL test successful with non-.de password. Status: 200, Time: 1830ms
+[2026-02-15 10:58:06] INFO: Successfully tested URL 3/11: https://www.opel.fr (Status: 200, Time: 1830ms)
+[2026-02-15 10:58:06] INFO: [4/11] Testing URL: https://www.opel.it
+[2026-02-15 10:58:06] INFO: Created proxy agent with non-.de password for URL: https://www.opel.it
+[2026-02-15 10:58:08] INFO: Target URL test successful with non-.de password. Status: 200, Time: 1973ms
+[2026-02-15 10:58:08] INFO: Successfully tested URL 4/11: https://www.opel.it (Status: 200, Time: 1973ms)
+[2026-02-15 10:58:08] INFO: [5/11] Testing URL: https://www.opel.es
+[2026-02-15 10:58:08] INFO: Created proxy agent with non-.de password for URL: https://www.opel.es
+[2026-02-15 10:58:10] INFO: Target URL test successful with non-.de password. Status: 200, Time: 1895ms
+[2026-02-15 10:58:10] INFO: Successfully tested URL 5/11: https://www.opel.es (Status: 200, Time: 1895ms)
+[2026-02-15 10:58:10] INFO: [6/11] Testing URL: https://www.opel.nl
+[2026-02-15 10:58:10] INFO: Created proxy agent with non-.de password for URL: https://www.opel.nl
+[2026-02-15 10:58:12] INFO: Target URL test successful with non-.de password. Status: 200, Time: 1722ms
+[2026-02-15 10:58:12] INFO: Successfully tested URL 6/11: https://www.opel.nl (Status: 200, Time: 1722ms)
+[2026-02-15 10:58:12] INFO: [7/11] Testing URL: https://www.opel.be
+[2026-02-15 10:58:12] INFO: Created proxy agent with non-.de password for URL: https://www.opel.be
+[2026-02-15 10:58:14] INFO: Target URL test successful with non-.de password. Status: 200, Time: 1853ms
+[2026-02-15 10:58:14] INFO: Successfully tested URL 7/11: https://www.opel.be (Status: 200, Time: 1853ms)
+[2026-02-15 10:58:14] INFO: [8/11] Testing URL: https://www.opel.at
+[2026-02-15 10:58:14] INFO: Created proxy agent with non-.de password for URL: https://www.opel.at
+[2026-02-15 10:58:17] INFO: Target URL test successful with non-.de password. Status: 200, Time: 3214ms
+[2026-02-15 10:58:17] INFO: Successfully tested URL 8/11: https://www.opel.at (Status: 200, Time: 3214ms)
+[2026-02-15 10:58:17] INFO: [9/11] Testing URL: https://www.opel.pl
+[2026-02-15 10:58:17] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pl
+[2026-02-15 10:58:19] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2456ms
+[2026-02-15 10:58:19] INFO: Successfully tested URL 9/11: https://www.opel.pl (Status: 200, Time: 2456ms)
+[2026-02-15 10:58:19] INFO: [10/11] Testing URL: https://www.opel.pt
+[2026-02-15 10:58:19] INFO: Created proxy agent with non-.de password for URL: https://www.opel.pt
+[2026-02-15 10:58:22] INFO: Target URL test successful with non-.de password. Status: 200, Time: 2540ms
+[2026-02-15 10:58:22] INFO: Successfully tested URL 10/11: https://www.opel.pt (Status: 200, Time: 2540ms)
+[2026-02-15 10:58:22] INFO: [11/11] Testing URL: https://www.vauxhall.co.uk
+[2026-02-15 10:58:22] INFO: Created proxy agent with non-.de password for URL: https://www.vauxhall.co.uk
+[2026-02-15 10:58:27] INFO: Target URL test successful with non-.de password. Status: 200, Time: 5215ms
+[2026-02-15 10:58:27] INFO: Successfully tested URL 11/11: https://www.vauxhall.co.uk (Status: 200, Time: 5215ms)
+[2026-02-15 10:58:27] INFO: URL testing complete: 11 successful, 0 failed
+[2026-02-15 10:58:27] INFO: Scheduling tasks...
+[2026-02-15 10:58:27] INFO: Using cron-based daily scheduling
+[2026-02-15 10:58:27] INFO: Generated schedule for 33 tasks
+[2026-02-15 10:58:27] INFO: Scheduled task: https://www.opel.de-10:9 at 10:09
+[2026-02-15 10:58:27] INFO: Scheduled task: https://www.opel.de-15:48 at 15:48
+[2026-02-15 10:58:27] INFO: Scheduled task: https://www.opel.de-19:35 at 19:35
+[2026-02-15 10:58:27] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-9:59 at 9:59
+[2026-02-15 10:58:27] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-14:50 at 14:50
+[2026-02-15 10:58:27] INFO: Scheduled task: https://store.opel.de/vehicles?channel=rockse-17:55 at 17:55
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.fr-11:57 at 11:57
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.fr-13:35 at 13:35
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.fr-18:36 at 18:36
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.it-11:6 at 11:06
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.it-15:51 at 15:51
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.it-18:39 at 18:39
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.es-9:22 at 9:22
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.es-15:45 at 15:45
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.es-20:10 at 20:10
+[2026-02-15 10:58:28] INFO: Scheduled task: https://www.opel.nl-10:39 at 10:39
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.nl-12:19 at 12:19
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.nl-18:27 at 18:27
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.be-10:59 at 10:59
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.be-12:12 at 12:12
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.be-17:45 at 17:45
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.at-9:28 at 9:28
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.at-12:10 at 12:10
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.at-19:48 at 19:48
+[2026-02-15 10:58:29] INFO: Scheduled task: https://www.opel.pl-11:53 at 11:53
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.opel.pl-15:0 at 15:00
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.opel.pl-19:11 at 19:11
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.opel.pt-8:46 at 8:46
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.opel.pt-13:38 at 13:38
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.opel.pt-21:27 at 21:27
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.vauxhall.co.uk-8:53 at 8:53
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.vauxhall.co.uk-15:18 at 15:18
+[2026-02-15 10:58:30] INFO: Scheduled task: https://www.vauxhall.co.uk-20:19 at 20:19
+[2026-02-15 10:58:30] INFO: All tasks scheduled
+[2026-02-15 10:58:30] INFO: Scheduled daily report at 11:20
+[2026-02-15 10:58:30] INFO: Ready! Monitoring tasks:
+[2026-02-15 10:58:30] INFO:   - Cron tasks: 34
+[2026-02-15 10:58:30] INFO:   - Interval tasks: 0
+[2026-02-15 10:58:30] INFO:   - Total tasks: 34
+[2026-02-15 10:58:30] INFO: Press Ctrl+C to stop
+[2026-02-15 10:59:00] INFO: Task triggered: https://www.opel.be-10:59
+[2026-02-15 10:59:00] INFO: Browser initialized with proxy support
+[2026-02-15 10:59:00] INFO: Executing survey for https://www.opel.be
+[2026-02-15 10:59:00] INFO: Navigating to https://www.opel.be
+[2026-02-15 10:59:36] ERROR: Survey failed for https://www.opel.be {"error":"page.waitForLoadState: Timeout 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================"}
+[2026-02-15 10:59:37] INFO: 📊 Survey result recorded: https://www.opel.be - failed {"duration":"36367ms","error":"page.waitForLoadState: Timeout 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================"}
+[2026-02-15 10:59:37] INFO: Survey result: failed {"url":"https://www.opel.be","duration":36367,"error":"page.waitForLoadState: Timeout 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================"}
+[2026-02-15 10:59:37] INFO: Browser closed
+[2026-02-15 11:03:30] WARN: High failure rate detected: 100.0%
+[2026-02-15 11:03:35] INFO: Alert email sent {"messageId":"<3e178b98-4fca-a2c2-4214-5cdd47923d66@healthcliq.com>","subject":"High Failure Rate Detected"}
+[2026-02-15 11:06:00] INFO: Task triggered: https://www.opel.it-11:6
+[2026-02-15 11:06:01] INFO: Browser initialized with proxy support
+[2026-02-15 11:06:01] INFO: Executing survey for https://www.opel.it
+[2026-02-15 11:06:01] INFO: Navigating to https://www.opel.it
+[2026-02-15 11:06:51] INFO: ℹ️ Strict cookie accept link not found
+[2026-02-15 11:06:51] INFO: ⚠️ No cookie consent modal found — Usabilla may be blocked
+[2026-02-15 11:06:51] INFO: 🔍 Scrolling page for up to 420 seconds while checking for Usabilla
+[2026-02-15 11:06:51] INFO: 🔎 Usabilla check: {"usabilla_live":true,"ua_object":false,"usabilla_scripts":[]}
+[2026-02-15 11:06:51] INFO: 🎯 Usabilla detected on page!
+[2026-02-15 11:06:59] INFO: Initial survey screenshot saved: ./screenshots/survey-initial-1771142819075.png
+[2026-02-15 11:06:59] INFO: Filling Page 1 - Mood rating: 4
+[2026-02-15 11:07:29] INFO: Selected mood rating: 4
+[2026-02-15 11:07:30] INFO: Page screenshot saved: ./screenshots/survey-page1-1771142819535.png
+[2026-02-15 11:07:32] INFO: Filling Page 2 - Sub-Satisfaction Matrix
+[2026-02-15 11:08:02] INFO: Selected SAT_Ergonomics: 5
+[2026-02-15 11:08:30] WARN: High failure rate detected: 100.0%
+[2026-02-15 11:08:32] INFO: Selected SAT_Vehicle_Characteristics: 3
+[2026-02-15 11:08:35] INFO: Alert email sent {"messageId":"<2348de48-22ea-2edf-218c-c693bb55781d@healthcliq.com>","subject":"High Failure Rate Detected"}
+[2026-02-15 11:09:02] INFO: Selected SAT_Vehicle_Price: 4
+[2026-02-15 11:09:02] INFO: Page screenshot saved: ./screenshots/survey-page2-1771142819535.png
+[2026-02-15 11:09:04] INFO: Filling Page 3 - Net Easy Score: 3
+[2026-02-15 11:09:34] INFO: Selected Net_Easy_Score: 3
+[2026-02-15 11:09:35] INFO: Page screenshot saved: ./screenshots/survey-page3-1771142819535.png
+[2026-02-15 11:09:36] INFO: Filling Page 4 - Vehicle: B2C_COMMERCIAL, Goal: GOAL_Info
+[2026-02-15 11:10:06] INFO: Selected vehicle type: B2C_COMMERCIAL
+[2026-02-15 11:10:36] INFO: Selected visit goal: GOAL_Info
+[2026-02-15 11:11:07] INFO: Page screenshot saved: ./screenshots/survey-page4-submission-1771142819535.png
+[2026-02-15 11:11:09] INFO: Survey form filled and submitted
+[2026-02-15 11:11:09] INFO: Survey completed successfully for https://www.opel.it
+[2026-02-15 11:11:09] INFO: 📊 Survey result recorded: https://www.opel.it - success {"duration":"308738ms"}
+[2026-02-15 11:11:09] INFO: Survey result: success {"url":"https://www.opel.it","duration":308738}
+[2026-02-15 11:11:09] INFO: Browser closed
+[2026-02-15 11:20:00] INFO: Daily report task triggered
+[2026-02-15 11:20:05] INFO: Daily report email sent {"messageId":"<f1c72dc2-ada7-898b-68f0-f0f160d8b2d7@healthcliq.com>","to":"otimpaulalex@gmail.com"}
+[2026-02-15 11:20:05] INFO: Daily report sent successfully
+[2026-02-15 11:20:05] INFO: Report entries cleared
+[2026-02-15 11:49:12] INFO: Shutting down...

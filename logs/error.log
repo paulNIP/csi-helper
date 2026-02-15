@@ -25,3 +25,28 @@
 [2026-02-09 10:12:00] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"}
 [2026-02-09 10:37:36] ERROR: Survey failed for https://financing.opel.store/konfigurator {"error":"Survey widget not found after scrolling"}
 [2026-02-09 11:09:43] ERROR: Survey failed for https://store.opel.de/vehicles?channel=rockse {"error":"Survey widget not found after scrolling"}
+[2026-02-15 10:28:35] ERROR: Proxy test failed {"error":"Request failed with status code 407"}
+[2026-02-15 10:28:39] ERROR: Target URL test failed for https://www.opel.de {"error":"HTTP 407","responseTime":720}
+[2026-02-15 10:28:40] ERROR: Target URL test failed for https://store.opel.de/vehicles?channel=rockse {"error":"HTTP 407","responseTime":734}
+[2026-02-15 10:28:41] ERROR: Target URL test failed for https://www.opel.fr {"error":"HTTP 407","responseTime":747}
+[2026-02-15 10:28:42] ERROR: Target URL test failed for https://www.opel.it {"error":"HTTP 407","responseTime":778}
+[2026-02-15 10:28:42] ERROR: Target URL test failed for https://www.opel.es {"error":"HTTP 407","responseTime":792}
+[2026-02-15 10:28:44] ERROR: Target URL test failed for https://www.opel.nl {"error":"HTTP 407","responseTime":1051}
+[2026-02-15 10:28:45] ERROR: Target URL test failed for https://www.opel.be {"error":"HTTP 407","responseTime":1251}
+[2026-02-15 10:28:45] ERROR: Target URL test failed for https://www.opel.at {"error":"HTTP 407","responseTime":722}
+[2026-02-15 10:28:46] ERROR: Target URL test failed for https://www.opel.pl {"error":"HTTP 407","responseTime":722}
+[2026-02-15 10:28:47] ERROR: Target URL test failed for https://www.opel.pt {"error":"HTTP 407","responseTime":735}
+[2026-02-15 10:28:48] ERROR: Target URL test failed for https://www.vauxhall.co.uk {"error":"HTTP 407","responseTime":753}
+[2026-02-15 10:30:31] ERROR: Proxy test failed {"error":"Proxy connection ended before receiving CONNECT response"}
+[2026-02-15 10:30:35] ERROR: Target URL test failed for https://www.opel.de {"error":"Proxy connection ended before receiving CONNECT response","responseTime":473}
+[2026-02-15 10:30:36] ERROR: Target URL test failed for https://store.opel.de/vehicles?channel=rockse {"error":"Proxy connection ended before receiving CONNECT response","responseTime":746}
+[2026-02-15 10:30:37] ERROR: Target URL test failed for https://www.opel.fr {"error":"Proxy connection ended before receiving CONNECT response","responseTime":730}
+[2026-02-15 10:30:37] ERROR: Target URL test failed for https://www.opel.it {"error":"Proxy connection ended before receiving CONNECT response","responseTime":765}
+[2026-02-15 10:30:38] ERROR: Target URL test failed for https://www.opel.es {"error":"Proxy connection ended before receiving CONNECT response","responseTime":721}
+[2026-02-15 10:30:39] ERROR: Target URL test failed for https://www.opel.nl {"error":"Proxy connection ended before receiving CONNECT response","responseTime":724}
+[2026-02-15 10:30:39] ERROR: Target URL test failed for https://www.opel.be {"error":"Proxy connection ended before receiving CONNECT response","responseTime":774}
+[2026-02-15 10:30:40] ERROR: Target URL test failed for https://www.opel.at {"error":"Proxy connection ended before receiving CONNECT response","responseTime":768}
+[2026-02-15 10:30:41] ERROR: Target URL test failed for https://www.opel.pl {"error":"Proxy connection ended before receiving CONNECT response","responseTime":758}
+[2026-02-15 10:30:42] ERROR: Target URL test failed for https://www.opel.pt {"error":"Proxy connection ended before receiving CONNECT response","responseTime":708}
+[2026-02-15 10:30:43] ERROR: Target URL test failed for https://www.vauxhall.co.uk {"error":"Proxy connection ended before receiving CONNECT response","responseTime":971}
+[2026-02-15 10:59:36] ERROR: Survey failed for https://www.opel.be {"error":"page.waitForLoadState: Timeout 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================"}

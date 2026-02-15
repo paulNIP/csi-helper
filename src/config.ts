@@ -8,7 +8,8 @@ export interface ProxyConfig {
   host: string;
   port: number;
   username: string;
-  password: string;
+  passwordDE: string;      // Password for .de domains
+  passwordNonDE: string;   // Password for non-.de domains
 }
 
 export interface SmtpConfig {
@@ -45,13 +46,20 @@ function loadJsonConfig<T>(filePath: string): T {
   return JSON.parse(data);
 }
 
-export function getConfig(): AppConfig {
+export function getConfig(url?: string): AppConfig {
+  // Determine proxy password based on URL domain
+  let proxyPassword = process.env.PROXY_PASS_DE || '';
+  if (url && !url.includes('.de')) {
+    proxyPassword = process.env.PROXY_PASS_NON_DE || '';
+  }
+
   return {
     proxy: {
       host: process.env.PROXY_HOST || 'geo.iproyal.com',
       port: parseInt(process.env.PROXY_PORT || '12321', 10),
       username: process.env.PROXY_USER || '',
-      password: process.env.PROXY_PASS || '',
+      passwordDE: process.env.PROXY_PASS_DE || '',
+      passwordNonDE: process.env.PROXY_PASS_NON_DE || '',
     },
     smtp: {
       host: process.env.SMTP_HOST || 'smtp.gmail.com',

@@ -36,6 +36,16 @@ async function initializeApp(): Promise<void> {
   logger.info('Initializing Opel CSI QA Helper...');
 
   const config = getConfig();
+  
+  // Validate proxy credentials are configured
+  if (!config.proxy.username || !config.proxy.passwordDE || !config.proxy.passwordNonDE) {
+    throw new Error(
+      'Proxy credentials not properly configured. Please check PROXY_USER, PROXY_PASS_DE, and PROXY_PASS_NON_DE environment variables.'
+    );
+  }
+
+  logger.info('Proxy credentials validated');
+  
   const proxyManager = new ProxyManager(config.proxy);
   const reportGenerator = new ReportGenerator();
   const scheduler = new Scheduler(proxyManager, reportGenerator);
@@ -65,6 +75,45 @@ async function initializeApp(): Promise<void> {
   logger.info('Initialization complete');
 }
 
+async function testUrlsViaProxy(): Promise<void> {
+  logger.info('Testing all URLs via proxy...');
+  
+  const urlsConfig = getUrlsConfig();
+  let successCount = 0;
+  let failureCount = 0;
+
+  // Loop through each URL and test with appropriate proxy password
+  for (let i = 0; i < urlsConfig.urls.length; i++) {
+    const url = urlsConfig.urls[i];
+    
+    try {
+      logger.info(`[${i + 1}/${urlsConfig.urls.length}] Testing URL: ${url}`);
+      
+      // Get config with URL-specific proxy password selection
+      const config = getConfig(url);
+      const proxyManager = new ProxyManager(config.proxy);
+      
+      // Test target URL via proxy
+      const testResult = await proxyManager.testTargetUrl(url);
+      
+      if (testResult.accessible) {
+        logger.info(`Successfully tested URL ${i + 1}/${urlsConfig.urls.length}: ${url} (Status: ${testResult.statusCode}, Time: ${testResult.responseTime}ms)`);
+        successCount++;
+      } else {
+        logger.warn(`Failed to test URL ${i + 1}/${urlsConfig.urls.length}: ${url} (Error: ${testResult.error})`);
+        failureCount++;
+      }
+    } catch (error) {
+      logger.error(`Error testing URL ${i + 1}/${urlsConfig.urls.length}: ${url}`, {
+        error: (error as Error).message,
+      });
+      failureCount++;
+    }
+  }
+
+  logger.info(`URL testing complete: ${successCount} successful, ${failureCount} failed`);
+}
+
 async function scheduleAllTasks(): Promise<void> {
   logger.info('Scheduling tasks...');
 
@@ -87,7 +136,6 @@ async function scheduleAllTasks(): Promise<void> {
 
     for (const entry of schedule) {
       appState.scheduler.scheduleUrl(entry.url, entry.hour, entry.minute);
-      appState.scheduler.scheduleUrl(entry.url, 14, 10);
       // Add delay to avoid overwhelming the system
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
@@ -153,6 +201,10 @@ async function main(): Promise<void> {
     logger.info('='.repeat(60));
 
     await initializeApp();
+    
+    // Test all URLs via proxy with appropriate passwords
+    await testUrlsViaProxy();
+    
     await scheduleAllTasks();
     await setupDailyReporting();
     await monitorFailures();

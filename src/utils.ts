@@ -61,7 +61,7 @@ export interface ScheduleEntry {
 }
 
 export function generateDailySchedule(urls: string[], runsPerDay: number): ScheduleEntry[] {
-  const windows = [{ start: 0, end: 0 }];
+  const windows: { start: number; end: number }[] = [];
 
   if (runsPerDay >= 3) {
     windows.push({ start: 8, end: 11 });
